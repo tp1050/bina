@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Barcode & ISBN Scanner</title>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <style>
+        #reader {
+            width: 100%;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        .controls {
+            margin: 20px;
+            text-align: center;
+        }
+        #result {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+        .item-info {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f5f5f5;
+        }
+        .save-info {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #e8f5e9;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <button onclick="startScanner()">Start Scanner</button>
+    </div>
+    <div id="reader"></div>
+    <div id="result"></div>
+
+    <script>
+        function startScanner() {
+            const html5QrCode = new Html5Qrcode("reader");
+            const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+
+            html5QrCode.start(
+                { facingMode: "environment" },
+                config,
+                onScanSuccess
+            );
+        }
+
+        function displayItemInfo(data) {
+            let infoHtml = '';
+            if (data.item_info) {
+                const info = data.item_info;
+                if (info.type === 'book') {
+                    infoHtml = `
+                        <div class="item-info">
+                            <h3>Book Information:</h3>
+                            <p>Title: ${info.title}</p>
+                            <p>Authors: ${info.authors.join(', ')}</p>
+                            <p>Publisher: ${info.publisher}</p>
+                            <p>Year: ${info.year}</p>
+                            <p>ISBN: ${info.isbn}</p>
+                        </div>
+                    `;
+                } else {
+                    infoHtml = `
+                        <div class="item-info">
+                            <h3>Product Information:</h3>
+                            <p>Title: ${info.title}</p>
+                            <p>Brand: ${info.brand}</p>
+                            <p>Description: ${info.description}</p>
+                            <p>Barcode: ${info.barcode}</p>
+                        </div>
+                    `;
+                }
+            }
+            if (data.saved_file) {
+                infoHtml += `
+                    <div class="save-info">
+                        <p>Saved to file: ${data.saved_file}</p>
+                    </div>
+                `;
+            }
+            return infoHtml;
+        }
+
+        function onScanSuccess(decodedText, decodedResult) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `Scanned: ${decodedText}`;
+
+            fetch('/submit-scan', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    scanned_data: decodedText,
+                    scan_type: decodedResult.result.format.formatName,
+                    timestamp: new Date().toISOString()
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                resultDiv.innerHTML += displayItemInfo(data.data);
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
