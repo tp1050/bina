@@ -59,6 +59,11 @@ def get_product_info(barcode):
         return None
     return None
 
+
+
+
+
+
 @app.route('/scan')
 def scan():
     return render_template('scan3.html')
