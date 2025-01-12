@@ -50,7 +50,7 @@ def get_isbn_info(isbn):
 def save_scan_result(data):
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     query=data.get("query","")
-    filename = f"/tmp/accepter/barcode/jsons/{query}.json"
+    filename = f"/tmp/accepter/barcodes/jsons/{query}.json"
     with open(filename, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
     return filename
