@@ -41,7 +41,7 @@ def submit_scan():
         filename = save_scan_result(scan_data)
         scan_data['saved_file'] = filename
         # response = requests.post('https://accepter.thesoole.ir/upload', json=scan_data)
-        return jsonify({"status": "success", "data": scan_data})
+        return render_template('result.html', scan_result=result)
     except Exception as e:
         print(e)
         return jsonify({"status": "error", "message": str(e)})
