@@ -1,6 +1,6 @@
 from flask import Flask, render_template, jsonify, request
 import json
-from regex import P
+# from regex import P
 import requests
 import isbnlib
 from datetime import datetime
