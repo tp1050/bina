@@ -28,7 +28,7 @@ def get_product_info(barcode):
 
 def translate_text(text):
     try:
-        return translator.translate(text, dest='fa').text
+        return Translator.translate(text, dest='fa').text
     except:
         return text
 def get_isbn_info(isbn):
@@ -43,7 +43,8 @@ def get_isbn_info(isbn):
                 "publisher": book.get("Publisher", ""),
                 "year": book.get("Year", "")
             }
-    except:
+    except Exception as e:
+        print(e)
         return None
 
 def save_scan_result(data):
