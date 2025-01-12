@@ -37,7 +37,7 @@ def submit_scan():
         # gserp=go(barcode)
         # if gserp:scan_data['GSERP']=gserp.get("html")
         scan_data['query']=barcode
-        print(scan_data['GSERP'])
+        # print(scan_data['GSERP'])
         filename = save_scan_result(scan_data)
         scan_data['saved_file'] = filename
         # response = requests.post('https://accepter.thesoole.ir/upload', json=scan_data)
