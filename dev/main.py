@@ -34,8 +34,8 @@ def submit_scan():
         scan_data['product']=get_product_info(barcode)
         print(scan_data['product'])
         # If both fail, try Google search
-        gserp=go(barcode)
-        if gserp:scan_data['GSERP']=gserp.get("html")
+        # gserp=go(barcode)
+        # if gserp:scan_data['GSERP']=gserp.get("html")
         scan_data['query']=barcode
         print(scan_data['GSERP'])
         filename = save_scan_result(scan_data)
@@ -43,6 +43,7 @@ def submit_scan():
         # response = requests.post('https://accepter.thesoole.ir/upload', json=scan_data)
         return jsonify({"status": "success", "data": scan_data})
     except Exception as e:
+        print(e)
         return jsonify({"status": "error", "message": str(e)})
     
 
