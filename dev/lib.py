@@ -49,11 +49,21 @@ def get_isbn_info(isbn):
 def save_scan_result(data):
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     query=data.get("query","")
-    filename = f"scan_{query}_{timestamp}.json"
+    filename = f"/tmp/accepter/barcode/jsons/{query}.json"
     with open(filename, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
     return filename
 
 
-
-
+def get_past_barcodes():
+    #get list of all json files in the json folder 
+    #return list of barcodes
+    import os
+    barcodes = {}
+    for file in os.listdir("/tmp/accepter/barcodes/jsons"):
+        if file.endswith('.json'):
+            try:
+               barcodes[file.split('.')[0]]=json.load(open(f"/tmp/accepter/barcodes/jsons/{file}", "r"))
+            except:
+               pass
+    return barcodes
