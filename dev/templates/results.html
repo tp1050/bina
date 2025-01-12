@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scan Result</title>
+    <style>
+        .button {
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .scan-more {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .refresh-data {
+            background-color: #008CBA;
+            color: white;
+        }
+        .data-container {
+            margin: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="data-container">
+        <h2>Scan Result</h2>
+        <pre>{{ scan_result | tojson(indent=2) }}</pre>
+    </div>
+
+    <button class="button refresh-data" onclick="refreshData()">Refresh Data</button>
+    <button class="button scan-more" onclick="window.location.href='/scan'">Scan Another</button>
+
+    <div class="data-container">
+        <h3>Previous Scans</h3>
+        <pre>{{ barcodes | tojson(indent=2) }}</pre>
+    </div>
+
+    <script>
+        function refreshData() {
+            fetch('/refresh-data', {
+                method: 'POST',
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status === 'success') {
+                    location.reload();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
