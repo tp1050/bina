@@ -27,9 +27,9 @@ def submit_scan():
     try:
         scan_data = request.json
         barcode = scan_data['scanned_data']
-        if barcodes[barcode]:
-            print("Barcode already scanned.")
-            return jsonify({'sucess': 'Barcode already scanned.',"data": scan_data})
+        # if barcodes[barcode]:
+        #     print("Barcode already scanned.")
+        #     return jsonify({'sucess': 'Barcode already scanned.',"data": scan_data})
         print(f"Recived barcode: {barcode}")
         # Try ISBN first
         scan_data['isbn_ret'] = get_isbn_info(barcode) if len(barcode) in [10, 13] else None
