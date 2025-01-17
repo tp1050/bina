@@ -43,5 +43,5 @@ class DynamicFlaskServer:
         if hasattr(module, 'setup_routes'):
             module.setup_routes(self.app)
     
-    def run(self, host='0.0.0.0', port=5000):
+    def run(self, host='0.0.0.0', port=64533):
         self.app.run(host=host, port=port, debug=True)
