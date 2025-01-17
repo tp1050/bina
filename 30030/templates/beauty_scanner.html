@@ -1,26 +1,82 @@
-import requests
-from flask import render_template
-
-def get_product_details(barcode):
-    url = f"https://api.barcodefinder.info/product/{barcode}"
-    headers = {
-        'Authorization': 'Bearer YOUR_API_KEY'
-    }
-    
-    response = requests.get(url, headers=headers)
-    if response.status_code == 200:
-        data = response.json()
-        return {
-            'title': data.get('name', ''),
-            'brand': data.get('brand', ''),
-            'description': data.get('description', ''),
-            'images': [data.get('image')] if data.get('image') else [],
-            'category': data.get('category', ''),
-            'manufacturer': data.get('manufacturer', ''),
-            'ingredients': data.get('ingredients', '').split(',') if data.get('ingredients') else [],
-            'barcode': barcode,
-            'raw_data': data  # Store full response for additional fields
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Scanner</title>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+            font-family: Arial, sans-serif;
         }
-    return None
+        #reader {
+            width: 100%;
+            max-width: 640px;
+            margin: 0 auto;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .start-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        #status {
+            margin-top: 15px;
+            color: #666;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Product Scanner</h1>
+        <button class="start-button" onclick="startScanner()">Start Scanner</button>
+        <div id="reader"></div>
+        <div id="status"></div>
+    </div>
 
-# Rest of the code remains the same
+    <script>
+        let html5QrCode;
+
+        function startScanner() {
+            if (html5QrCode) {
+                html5QrCode.stop();
+            }
+            
+            html5QrCode = new Html5Qrcode("reader");
+            const config = { 
+                fps: 10, 
+                qrbox: { width: 250, height: 100 } 
+            };
+
+            html5QrCode.start(
+                { facingMode: "environment" },
+                config,
+                onScanSuccess,
+                onScanError
+            ).catch(err => {
+                document.getElementById('status').textContent = 'Camera Error: ' + err;
+            });
+        }
+
+        function onScanSuccess(decodedText, decodedResult) {
+            html5QrCode.stop().then(() => {
+                window.location.href = `/products/${encodeURIComponent(decodedText)}`;
+            });
+        }
+
+        function onScanError(error) {
+            console.log(error);
+        }
+    </script>
+</body>
+</html>
