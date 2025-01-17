@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSON Scanner</title>
+    <style>
+        .json-list {
+            margin: 20px;
+            padding: 10px;
+        }
+        .json-item {
+            cursor: pointer;
+            padding: 10px;
+            margin: 5px;
+            background: #f0f0f0;
+            border-radius: 5px;
+        }
+        .back-button {
+            margin: 10px;
+            padding: 8px 16px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .scan-button {
+            margin: 10px;
+            padding: 8px 16px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="main-view">
+        <button id="scanButton" class="scan-button">Scan New</button>
+        <div id="jsonList" class="json-list"></div>
+    </div>
+    
+    <div id="detail-view" style="display: none;">
+        <button id="backButton" class="back-button">Back to List</button>
+        <pre id="jsonContent"></pre>
+    </div>
+
+    <script src="scanner.js"></script>
+</body>
+</html>
