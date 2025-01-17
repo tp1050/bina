@@ -13,11 +13,6 @@
             margin: 20px;
             text-align: center;
         }
-        #result {
-            margin: 20px;
-            padding: 20px;
-            border: 1px solid #ccc;
-        }
     </style>
 </head>
 <body>
@@ -25,11 +20,12 @@
         <button onclick="startScanner()">Start Scanner</button>
     </div>
     <div id="reader"></div>
-    <div id="result"></div>
 
     <script>
+        let html5QrCode;
+
         function startScanner() {
-            const html5QrCode = new Html5Qrcode("reader");
+            html5QrCode = new Html5Qrcode("reader");
             const config = { fps: 10, qrbox: { width: 250, height: 250 } };
 
             html5QrCode.start(
@@ -40,26 +36,23 @@
         }
 
         function onScanSuccess(decodedText, decodedResult) {
-            const resultDiv = document.getElementById('result');
-            resultDiv.innerHTML = `Scanned: ${decodedText}`;
-
-            fetch('/submit-scan', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    scanned_data: decodedText,
-                    scan_type: decodedResult.result.format.formatName,
-                    timestamp: new Date().toISOString()
+            html5QrCode.stop().then(() => {
+                fetch('/submit-scan', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        scanned_data: decodedText,
+                        scan_type: decodedResult.result.format.formatName,
+                        timestamp: new Date().toISOString()
+                    })
                 })
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                resultDiv.innerHTML += `<p>Timestamp: ${data.data.timestamp}</p>`;
-            })
-            .catch(error => console.error('Error:', error));
+                .then(response => response.json())
+                .then(data => {
+                    window.location.href = `/result?content=${encodeURIComponent(data.data.content)}&timestamp=${encodeURIComponent(data.data.timestamp)}`;
+                });
+            });
         }
     </script>
 </body>

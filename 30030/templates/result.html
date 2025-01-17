@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scan Result</title>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .result {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .scan-again {
+            margin: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="result">
+            <h2>Scanned Content:</h2>
+            <p>{{ content }}</p>
+            <p>Scanned at: {{ timestamp }}</p>
+        </div>
+        <button class="scan-again" onclick="window.location.href='/scan'">Scan Another Code</button>
+    </div>
+</body>
+</html>

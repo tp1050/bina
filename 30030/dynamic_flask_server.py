@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 import importlib.util
 import os
 from datetime import datetime
@@ -14,6 +14,12 @@ class DynamicFlaskServer:
         @self.app.route('/scan')
         def scan_qr():
             return render_template('scanner.html')
+        
+        @self.app.route('/result')
+        def show_result():
+            content = request.args.get('content', '')
+            timestamp = request.args.get('timestamp', '')
+            return render_template('result.html', content=content, timestamp=timestamp)
         
         @self.app.route('/submit-scan', methods=['POST'])
         def submit_scan():
