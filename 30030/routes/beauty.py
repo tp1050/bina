@@ -64,14 +64,14 @@ class ProductLookup:
                 timeout=5
             )
             if openbeauty_response.status_code == 200:
-                ret.append(self.format_openbeauty_data(openbeauty_response.json()))
+                ret.appendopenbeauty_response.json())
             from lib import search_brocade, get_upc_data
             brocade_data = search_brocade(barcode)
             upc_data = get_upc_data(barcode)
             if brocade_data:
-                ret.append(self.format_barcodefinder_data(brocade_data, barcode))
+                ret.append( barcode)
             if upc_data:
-                ret.append(self.format_openbeauty_data(upc_data))
+                ret.append(upc_data)
                 
         except requests.exceptions.RequestException as e:
             print(f"API Error: {e}")
