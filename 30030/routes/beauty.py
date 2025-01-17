@@ -9,9 +9,9 @@ class ProductLookup:
         # self.barcodefinder_api_key = os.getenv('BARCODEFINDER_API_KEY', 'YOUR_API_KEY')
         self.barcodefinder_url = "https://api.barcodefinder.info/product"
         self.openbeauty_url = "https://world.openbeautyfacts.org/api/v3/product"
-        self.headers = {
-            'Authorization': f'Bearer {self.barcodefinder_api_key}'
-        }
+        # self.headers = {
+        #     'Authorization': f'Bearer {self.barcodefinder_api_key}'
+        # }
 
     def format_openbeauty_data(self, data):
         product = data.get('product', {})
