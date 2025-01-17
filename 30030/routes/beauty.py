@@ -9,9 +9,7 @@ class ProductLookup:
         self.barcodefinder_api_key = os.getenv('BARCODEFINDER_API_KEY', 'YOUR_API_KEY')
         self.barcodefinder_url = "https://api.barcodefinder.info/product"
         self.openbeauty_url = "https://world.openbeautyfacts.org/api/v3/product"
-        self.headers = {
-            'Authorization': f'Bearer {self.barcodefinder_api_key}'
-        }
+  
 
     def search_brocade(self, barcode):
         url = f"https://www.brocade.io/api/items/{barcode}"
@@ -33,6 +31,8 @@ class ProductLookup:
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
             return response.json()
+        else:
+            print(f"Error fetching data for barcode {barcode}: {response.status_code}")
         return None
 
     def format_openbeauty_data(self, data):
@@ -134,25 +134,15 @@ class ProductLookup:
             barcodefinder_response = requests.get(
                 f"{self.barcodefinder_url}/{barcode}", 
                 headers=self.headers,
-                timeout=5
+                timeout=5        self.barcodefinder_url = "https://api.barcodefinder.info/product"
+
             )
             
             if barcodefinder_response.status_code == 200:
                 return self.format_barcodefinder_data(barcodefinder_response.json(), barcode)
             
-            # Try OpenBeautyFacts third
-            openbeauty_response = requests.get(
-                f"{self.openbeauty_url}/{barcode}.json",
-                timeout=5
-            )
-            if openbeauty_response.status_code == 200:
-                return self.format_openbeauty_data(openbeauty_response.json())
+            # Try OpenBeautyFacts        self.barcodefinder_url = "https://api.barcodefinder.info/product"
 
-            # Try Brocade as final fallback
-            brocade_data = self.search_brocade(barcode)
-            if brocade_data:
-                return self.format_brocade_data(brocade_data, barcode)
-                
         except requests.exceptions.RequestException as e:
             print(f"API Error: {e}")
             
