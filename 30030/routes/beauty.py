@@ -1,5 +1,5 @@
 import requests
-from flask import render_template, jsonify, request, redirect, url_for
+from flask import Response, render_template, jsonify, request, redirect, url_for
 import os
 from datetime import datetime
 import json
@@ -127,7 +127,37 @@ class ProductLookup:
             print(f"API Error: {e}")
             
         return None
+def get_product_details(self, barcode):
+    try:
+        # Try UPC Database first
+        upc_data = self.get_upc_data(barcode)
+        if upc_data and upc_data.get('items'):
+            return upc_data
 
+        # Try Barcodefinder second
+        barcodefinder_response = requests.get(
+            f"{self.barcodefinder_url}/{barcode}", 
+            headers=self.headers,
+            timeout=5
+        )
+        
+        if barcodefinder_response.status_code == 200:
+            return barcodefinder_response.json()
+        
+        # Fallback to OpenBeautyFacts
+        openbeauty_response = requests.get(
+            f"{self.openbeauty_url}/{barcode}.json",
+            timeout=5
+        )
+        if openbeauty_response.status_code == 200:
+            return openbeauty_response.json()
+            
+    except requests.exceptions.RequestException as e:
+        print(f"API Error: {e}")
+        
+    return None
+
+# Update the beauty_api route to use json.dumps for pretty printing
 def save_scan_history(product_info):
     history_file = 'scan_history.json'
     try:
@@ -143,7 +173,7 @@ def setup_routes(app):
     @app.route('/beauty')
     def beauty_scanner():
         return render_template('beauty_scanner.html')
-
+    
     @app.route('/beauty/<barcode>', methods=['GET', 'POST'])
     def beauty_lookup(barcode):
         if request.method == 'POST':
@@ -157,11 +187,14 @@ def setup_routes(app):
             save_scan_history(product_info)
         return render_template('beauty_result.html', product=product_info)
 
+    # @app.route('/api/beauty/<barcode>')
+    # def beauty_api(barcode):
+    #     product_info = product_lookup.get_product_details(barcode)
+    #     return jsonify(product_info if product_info else {"error": "Product not found"})
     @app.route('/api/beauty/<barcode>')
     def beauty_api(barcode):
         product_info = product_lookup.get_product_details(barcode)
-        return jsonify(product_info if product_info else {"error": "Product not found"})
-
+        return Response(json.dumps(product_info, indent=2), mimetype='application/json') if product_info else jsonify({"error": "Product not found"})
     @app.route('/beauty/history')
     def beauty_history():
         try:
