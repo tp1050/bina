@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Details</title>
+    <style>
+        .book-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .book-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        .book-cover {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 4px;
+        }
+        .book-details {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 10px;
+            align-content: start;
+        }
+        .label {
+            font-weight: bold;
+            color: #666;
+        }
+        .value {
+            color: #333;
+        }
+        .scan-again {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="book-container">
+        {% if book %}
+            <div class="book-grid">
+                <div>
+                    <img src="{{ book.cover }}" alt="{{ book.title }}" class="book-cover">
+                </div>
+                <div class="book-details">
+                    <div class="label">Title:</div>
+                    <div class="value">{{ book.title }}</div>
+                    
+                    <div class="label">Author(s):</div>
+                    <div class="value">{{ book.authors|join(', ') }}</div>
+                    
+                    <div class="label">Publisher:</div>
+                    <div class="value">{{ book.publisher }}</div>
+                    
+                    <div class="label">Published:</div>
+                    <div class="value">{{ book.publish_date }}</div>
+                    
+                    <div class="label">Pages:</div>
+                    <div class="value">{{ book.pages }}</div>
+                    
+                    <div class="label">ISBN:</div>
+                    <div class="value">{{ book.isbn }}</div>
+                </div>
+            </div>
+        {% else %}
+            <div class="book-grid">
+                <p>No book information found for this ISBN.</p>
+            </div>
+        {% endif %}
+        <button class="scan-again" onclick="window.location.href='/scan'">Scan Another Book</button>
+    </div>
+</body>
+</html>

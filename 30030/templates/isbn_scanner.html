@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ISBN Scanner</title>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        #reader {
+            width: 100%;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        .controls {
+            margin: 20px;
+            text-align: center;
+        }
+        .start-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>ISBN Barcode Scanner</h2>
+        <div class="controls">
+            <button class="start-button" onclick="startScanner()">Start ISBN Scanner</button>
+        </div>
+        <div id="reader"></div>
+    </div>
+
+    <script>
+        let html5QrCode;
+
+        function startScanner() {
+            html5QrCode = new Html5Qrcode("reader");
+            const config = { 
+                fps: 10, 
+                qrbox: { width: 250, height: 100 },
+                formatsToSupport: [ Html5QrCode.FORMATS.EAN_13 ]
+            };
+
+            html5QrCode.start(
+                { facingMode: "environment" },
+                config,
+                onScanSuccess
+            );
+        }
+
+        function onScanSuccess(decodedText, decodedResult) {
+            html5QrCode.stop().then(() => {
+                window.location.href = `/isbn/${encodeURIComponent(decodedText)}`;
+            });
+        }
+    </script>
+</body>
+</html>
