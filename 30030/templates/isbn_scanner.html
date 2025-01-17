@@ -61,6 +61,7 @@
                     };
 
                     html5QrCode.start(
+                        { facingMode: "environment" }, // This forces the back camera
                         { deviceId: devices[0].id },
                         config,
                         onScanSuccess,
