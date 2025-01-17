@@ -64,7 +64,7 @@ class ProductLookup:
                 timeout=5
             )
             if openbeauty_response.status_code == 200:
-                ret.appendopenbeauty_response.json())
+                ret.appendopenbeauty_response.json()
             from lib import search_brocade, get_upc_data
             brocade_data = search_brocade(barcode)
             upc_data = get_upc_data(barcode)
