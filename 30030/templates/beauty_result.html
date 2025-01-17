@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Beauty Product Details</title>
+    <style>
+        .product-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 30px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        .product-image {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .product-details {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 15px;
+            align-content: start;
+        }
+        .label {
+            font-weight: bold;
+            color: #333;
+            font-size: 16px;
+        }
+        .value {
+            color: #444;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+        .ingredients-section {
+            grid-column: span 2;
+            margin-top: 25px;
+        }
+        .ingredients-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .ingredient-item {
+            background: #FFF0F5;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        .scan-again {
+            display: block;
+            margin: 30px auto;
+            padding: 15px 30px;
+            background: #FF69B4;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="product-container">
+        {% if product %}
+            <div class="product-grid">
+                <div>
+                    {% if product.images %}
+                        <img src="{{ product.images[0] }}" alt="{{ product.title }}" class="product-image">
+                    {% endif %}
+                </div>
+                <div class="product-details">
+                    <div class="label">Product Name:</div>
+                    <div class="value">{{ product.title }}</div>
+                    
+                    <div class="label">Brand:</div>
+                    <div class="value">{{ product.brand }}</div>
+                    
+                    <div class="label">Category:</div>
+                    <div class="value">{{ product.category }}</div>
+                    
+                    <div class="label">Barcode:</div>
+                    <div class="value">{{ product.barcode }}</div>
+
+                    {% if product.description %}
+                    <div class="label">Description:</div>
+                    <div class="value">{{ product.description }}</div>
+                    {% endif %}
+
+                    <div class="label">Manufacturer:</div>
+                    <div class="value">{{ product.manufacturer }}</div>
+                    
+                    {% if product.ingredients %}
+                    <div class="ingredients-section">
+                        <div class="label">Ingredients:</div>
+                        <ul class="ingredients-list">
+                            {% for ingredient in product.ingredients %}
+                                <li class="ingredient-item">{{ ingredient.strip() }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% else %}
+            <div class="product-grid">
+                <p>No product information found for this barcode.</p>
+            </div>
+        {% endif %}
+        <button class="scan-again" onclick="window.location.href='/beauty'">Scan Another Product</button>
+    </div>
+</body>
+</html>

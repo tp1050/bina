@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scan History</title>
+    <style>
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .history-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .scan-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 15px;
+        }
+        .scan-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        .scan-details {
+            margin-top: 10px;
+        }
+        .scan-title {
+            font-weight: bold;
+            color: #333;
+            margin: 5px 0;
+        }
+        .scan-meta {
+            color: #666;
+            font-size: 14px;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #FF69B4;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/beauty" class="back-button">Back to Scanner</a>
+        <h1>Scan History</h1>
+        <div class="history-grid">
+            {% for scan in scans %}
+            <div class="scan-card">
+                {% if scan.images %}
+                    <img src="{{ scan.images[0] }}" alt="{{ scan.title }}" class="scan-image">
+                {% endif %}
+                <div class="scan-details">
+                    <div class="scan-title">{{ scan.title }}</div>
+                    <div class="scan-meta">
+                        <div>Brand: {{ scan.brand }}</div>
+                        <div>Scanned: {{ scan.timestamp }}</div>
+                        <div>Barcode: {{ scan.barcode }}</div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <p>No scan history available.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Product Scanner</title>
+    <title>Beauty Product Scanner</title>
     <script src="https://unpkg.com/html5-qrcode"></script>
     <style>
         .container {
@@ -21,7 +21,7 @@
         .start-button {
             padding: 15px 30px;
             font-size: 18px;
-            background: #2196F3;
+            background: #FF69B4;
             color: white;
             border: none;
             border-radius: 25px;
@@ -34,11 +34,22 @@
             color: #666;
             font-size: 16px;
         }
+        .nav-links {
+            margin: 20px 0;
+        }
+        .nav-links a {
+            color: #FF69B4;
+            text-decoration: none;
+            margin: 0 10px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Product Scanner</h1>
+        <h1>Beauty Product Scanner</h1>
+        <div class="nav-links">
+            <a href="/beauty/history">View Scan History</a>
+        </div>
         <button class="start-button" onclick="startScanner()">Start Scanner</button>
         <div id="reader"></div>
         <div id="status"></div>
@@ -70,7 +81,7 @@
 
         function onScanSuccess(decodedText, decodedResult) {
             html5QrCode.stop().then(() => {
-                window.location.href = `/products/${encodeURIComponent(decodedText)}`;
+                window.location.href = `/beauty/${encodeURIComponent(decodedText)}`;
             });
         }
 
