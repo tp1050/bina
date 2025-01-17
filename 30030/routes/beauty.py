@@ -134,8 +134,7 @@ class ProductLookup:
             barcodefinder_response = requests.get(
                 f"{self.barcodefinder_url}/{barcode}", 
                 headers=self.headers,
-                timeout=5        
-                self.barcodefinder_url = "https://api.barcodefinder.info/product"
+                timeout=5        self.barcodefinder_url = "https://api.barcodefinder.info/product"
 
             )
             
