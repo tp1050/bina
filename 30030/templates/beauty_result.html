@@ -68,6 +68,15 @@
             font-size: 18px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
+        .data-source {
+            grid-column: span 2;
+            margin-top: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #666;
+        }
     </style>
 </head>
 <body>
@@ -110,6 +119,10 @@
                         </ul>
                     </div>
                     {% endif %}
+
+                    <div class="data-source">
+                        Data Source: {{ product.source }}
+                    </div>
                 </div>
             </div>
         {% else %}
