@@ -45,7 +45,9 @@ class ProductLookup:
         }
 
     def get_product_details(self, barcode):
+        ret=[]
         try:
+           
             # Try Barcodefinder first
             barcodefinder_response = requests.get(
                 f"{self.barcodefinder_url}/{barcode}", 
@@ -54,7 +56,7 @@ class ProductLookup:
             )
             
             if barcodefinder_response.status_code == 200:
-                return self.format_barcodefinder_data(barcodefinder_response.json(), barcode)
+                ret.append( self.format_barcodefinder_data(barcodefinder_response.json(), barcode))
             
             # Fallback to OpenBeautyFacts
             openbeauty_response = requests.get(
@@ -62,19 +64,19 @@ class ProductLookup:
                 timeout=5
             )
             if openbeauty_response.status_code == 200:
-                return self.format_openbeauty_data(openbeauty_response.json())
+                ret.append(self.format_openbeauty_data(openbeauty_response.json()))
             from lib import search_brocade, get_upc_data
             brocade_data = search_brocade(barcode)
             upc_data = get_upc_data(barcode)
             if brocade_data:
-                return self.format_barcodefinder_data(brocade_data, barcode)
+                ret.append(self.format_barcodefinder_data(brocade_data, barcode))
             if upc_data:
-                return self.format_openbeauty_data(upc_data)
+                ret.append(self.format_openbeauty_data(upc_data))
                 
         except requests.exceptions.RequestException as e:
             print(f"API Error: {e}")
             
-        return None
+        return ret
 
 def save_scan_history(product_info):
     history_file = 'scan_history.json'
