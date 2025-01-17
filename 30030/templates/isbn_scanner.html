@@ -28,6 +28,10 @@
             border-radius: 4px;
             cursor: pointer;
         }
+        #status {
+            margin-top: 10px;
+            color: #666;
+        }
     </style>
 </head>
 <body>
@@ -37,24 +41,39 @@
             <button class="start-button" onclick="startScanner()">Start ISBN Scanner</button>
         </div>
         <div id="reader"></div>
+        <div id="status"></div>
     </div>
 
     <script>
         let html5QrCode;
 
         function startScanner() {
-            html5QrCode = new Html5Qrcode("reader");
-            const config = { 
-                fps: 10, 
-                qrbox: { width: 250, height: 100 },
-                formatsToSupport: [ Html5QrCode.FORMATS.EAN_13 ]
-            };
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = 'Starting camera...';
 
-            html5QrCode.start(
-                { facingMode: "environment" },
-                config,
-                onScanSuccess
-            );
+            html5QrCode = new Html5Qrcode("reader");
+            
+            Html5Qrcode.getCameras().then(devices => {
+                if (devices && devices.length) {
+                    const config = { 
+                        fps: 10, 
+                        qrbox: { width: 250, height: 100 }
+                    };
+
+                    html5QrCode.start(
+                        { deviceId: devices[0].id },
+                        config,
+                        onScanSuccess,
+                        onScanError
+                    ).then(() => {
+                        statusDiv.textContent = 'Camera started. Ready to scan.';
+                    });
+                } else {
+                    statusDiv.textContent = 'No cameras found';
+                }
+            }).catch(err => {
+                statusDiv.textContent = 'Error accessing camera: ' + err;
+            });
         }
 
         function onScanSuccess(decodedText, decodedResult) {
@@ -62,6 +81,14 @@
                 window.location.href = `/isbn/${encodeURIComponent(decodedText)}`;
             });
         }
+
+        function onScanError(error) {
+            // Handle scan errors silently
+            console.log(error);
+        }
+
+        // Start scanner automatically when page loads
+        document.addEventListener('DOMContentLoaded', startScanner);
     </script>
 </body>
 </html>
