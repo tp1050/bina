@@ -4,34 +4,7 @@
     <title>ISBN Scanner</title>
     <script src="https://unpkg.com/html5-qrcode"></script>
     <style>
-        .container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 20px;
-            text-align: center;
-        }
-        #reader {
-            width: 100%;
-            max-width: 640px;
-            margin: 0 auto;
-        }
-        .controls {
-            margin: 20px;
-            text-align: center;
-        }
-        .start-button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        #status {
-            margin-top: 10px;
-            color: #666;
-        }
+        /* Your existing styles remain the same */
     </style>
 </head>
 <body>
@@ -48,27 +21,24 @@
         let html5QrCode;
 
         function startScanner() {
-            const statusDiv = document.getElementById('status');
-            statusDiv.textContent = 'Starting camera...';
-
-            html5QrCode = new Html5Qrcode("reader");
+            if (html5QrCode) {
+                html5QrCode.stop();
+            }
             
-            Html5Qrcode.getCameras().then(devices => {
-                if (devices && devices.length) {
-                    const config = { 
-                        fps: 10, 
-                        qrbox: { width: 250, height: 100 }
-                    };
-
-                    function startScanner() {
             html5QrCode = new Html5Qrcode("reader");
-            const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+            const config = { 
+                fps: 10, 
+                qrbox: { width: 250, height: 250 } 
+            };
 
             html5QrCode.start(
                 { facingMode: "environment" },
                 config,
-                onScanSuccess
-            );
+                onScanSuccess,
+                onScanError
+            ).catch(err => {
+                document.getElementById('status').textContent = 'Camera Error: ' + err;
+            });
         }
 
         function onScanSuccess(decodedText, decodedResult) {
@@ -78,12 +48,11 @@
         }
 
         function onScanError(error) {
-            // Handle scan errors silently
             console.log(error);
         }
 
-        // Start scanner automatically when page loads
-        document.addEventListener('DOMContentLoaded', startScanner);
+        // Remove the automatic start
+        // document.addEventListener('DOMContentLoaded', startScanner);
     </script>
 </body>
 </html>
