@@ -13,13 +13,23 @@ class ProductLookup:
             'Authorization': f'Bearer {self.barcodefinder_api_key}'
         }
 
+    def search_brocade(self, barcode):
+        url = f"https://www.brocade.io/api/items/{barcode}"
+        headers = {
+            'User-Agent': 'Mozilla/5.0',
+            'Accept': 'application/json'
+        }
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            return response.json()
+        return None
+
     def get_upc_data(self, barcode):
         url = f"https://api.upcitemdb.com/prod/trial/lookup?upc={barcode}"
         headers = {
             'user-agent': 'Mozilla/5.0',
             'accept': 'application/json'
         }
-        
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
             return response.json()
@@ -74,6 +84,21 @@ class ProductLookup:
             'price_history': self.get_price_history(barcode)
         }
 
+    def format_brocade_data(self, data, barcode):
+        return {
+            'title': data.get('title', ''),
+            'brand': data.get('brand', ''),
+            'description': data.get('description', ''),
+            'images': [data.get('image')] if data.get('image') else [],
+            'category': data.get('category', ''),
+            'manufacturer': data.get('manufacturer', ''),
+            'barcode': barcode,
+            'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            'source': 'Brocade',
+            'raw_data': data,
+            'price_history': self.get_price_history(barcode)
+        }
+
     def get_price_history(self, barcode):
         try:
             with open('price_history.json', 'r') as f:
@@ -115,13 +140,18 @@ class ProductLookup:
             if barcodefinder_response.status_code == 200:
                 return self.format_barcodefinder_data(barcodefinder_response.json(), barcode)
             
-            # Fallback to OpenBeautyFacts
+            # Try OpenBeautyFacts third
             openbeauty_response = requests.get(
                 f"{self.openbeauty_url}/{barcode}.json",
                 timeout=5
             )
             if openbeauty_response.status_code == 200:
                 return self.format_openbeauty_data(openbeauty_response.json())
+
+            # Try Brocade as final fallback
+            brocade_data = self.search_brocade(barcode)
+            if brocade_data:
+                return self.format_brocade_data(brocade_data, barcode)
                 
         except requests.exceptions.RequestException as e:
             print(f"API Error: {e}")
