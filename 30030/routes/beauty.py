@@ -6,7 +6,7 @@ import json
 
 class ProductLookup:
     def __init__(self):
-        self.barcodefinder_api_key = os.getenv('BARCODEFINDER_API_KEY', 'YOUR_API_KEY')
+        # self.barcodefinder_api_key = os.getenv('BARCODEFINDER_API_KEY', 'YOUR_API_KEY')
         self.barcodefinder_url = "https://api.barcodefinder.info/product"
         self.openbeauty_url = "https://world.openbeautyfacts.org/api/v3/product"
         self.headers = {
@@ -49,14 +49,14 @@ class ProductLookup:
         try:
            
             # Try Barcodefinder first
-            barcodefinder_response = requests.get(
-                f"{self.barcodefinder_url}/{barcode}", 
-                headers=self.headers,
-                timeout=5
-            )
+            # barcodefinder_response = requests.get(
+            #     f"{self.barcodefinder_url}/{barcode}", 
+            #     headers=self.headers,
+            #     timeout=5
+            # )
             
-            if barcodefinder_response.status_code == 200:
-                ret.append( self.format_barcodefinder_data(barcodefinder_response.json(), barcode))
+            # if barcodefinder_response.status_code == 200:
+            #     ret.append( self.format_barcodefinder_data(barcodefinder_response.json(), barcode))
             
             # Fallback to OpenBeautyFacts
             openbeauty_response = requests.get(
