@@ -60,21 +60,15 @@
                         qrbox: { width: 250, height: 100 }
                     };
 
-                    html5QrCode.start(
-                        { facingMode: "environment" }, // This forces the back camera
-                        { deviceId: devices[0].id },
-                        config,
-                        onScanSuccess,
-                        onScanError
-                    ).then(() => {
-                        statusDiv.textContent = 'Camera started. Ready to scan.';
-                    });
-                } else {
-                    statusDiv.textContent = 'No cameras found';
-                }
-            }).catch(err => {
-                statusDiv.textContent = 'Error accessing camera: ' + err;
-            });
+                    function startScanner() {
+            html5QrCode = new Html5Qrcode("reader");
+            const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+
+            html5QrCode.start(
+                { facingMode: "environment" },
+                config,
+                onScanSuccess
+            );
         }
 
         function onScanSuccess(decodedText, decodedResult) {
