@@ -6,7 +6,7 @@ import json
 
 class ProductLookup:
     def __init__(self):
-        self.barcodefinder_api_key = os.getenv('BARCODEFINDER_API_KEY', 'YOUR_API_KEY')
+        self.barcodefinder_api_key = "77777"
         self.barcodefinder_url = "https://api.barcodefinder.info/product"
         self.openbeauty_url = "https://world.openbeautyfacts.org/api/v3/product"
         self.headers = {
