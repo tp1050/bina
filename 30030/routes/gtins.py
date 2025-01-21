@@ -60,16 +60,29 @@ def search_cogita(barcode):
         print(e)
         return product
 
-
 def setup_routes(app):
     @app.route('/gtin_scanner', methods=['GET'])
     def gtin_scanner():
         return render_template('gtin_scanner.html')
+    
     @app.route('/gtin/<barcode>')
     def gtin_barcode(barcode):
-            product_info=[]
-            product_info.append( search_cogita(barcode))
-            return Response(json.dumps(product_info, indent=2), mimetype='application/json')
+        product_info = search_cogita(barcode)
+        # Prettify the JSON for display
+        product_json = json.dumps(product_info, indent=2)
+        return render_template('gtin_result.html', 
+                                product=product_info, 
+                                product_json=product_json)
+
+# def setup_routes(app):
+#     @app.route('/gtin_scanner', methods=['GET'])
+#     def gtin_scanner():
+#         return render_template('gtin_scanner.html')
+#     @app.route('/gtin/<barcode>')
+#     def gtin_barcode(barcode):
+#             product_info=[]
+#             product_info.append( search_cogita(barcode))
+#             return Response(json.dumps(product_info, indent=2), mimetype='application/json')
 
 
 
