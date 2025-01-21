@@ -67,7 +67,8 @@ def setup_routes(app):
     
     @app.route('/gtin/<barcode>')
     def gtin_barcode(barcode):
-        product_info = search_cogita(barcode)
+        product_info = [search_cogita(barcode),search_openbeauty(barcode)]
+
         # Prettify the JSON for display
         product_json = json.dumps(product_info, indent=2)
         return render_template('gtin_result.html', 
