@@ -1,0 +1,1705 @@
+{
+    "props": {
+        "pageProps": {
+            "dehydratedState": {
+                "mutations": [],
+                "queries": [
+                    {
+                        "state": {
+                            "data": {
+                                "variantCount": 256001,
+                                "brandCount": 16020,
+                                "categoryCount": 333,
+                                "inventoryCount": 206581751,
+                                "countriesServed": 40,
+                                "inventoryValue": "34583252781.28",
+                                "inventoryValueCurrency": "EUR",
+                                "mov": {
+                                    "EUR": 0,
+                                    "GBP": 0,
+                                    "USD": 0
+                                },
+                                "invoicingOptions": [
+                                    {
+                                        "daysDeferred": 0,
+                                        "interestRatio": "0.0000"
+                                    },
+                                    {
+                                        "daysDeferred": 30,
+                                        "interestRatio": "0.0000"
+                                    },
+                                    {
+                                        "daysDeferred": 60,
+                                        "interestRatio": "0.0290"
+                                    },
+                                    {
+                                        "daysDeferred": 90,
+                                        "interestRatio": "0.0450"
+                                    }
+                                ],
+                                "offerCountries": {
+                                    "BG": {
+                                        "sellers": 9,
+                                        "variants": 3883
+                                    },
+                                    "CZ": {
+                                        "sellers": 16,
+                                        "variants": 55934
+                                    },
+                                    "DE": {
+                                        "sellers": 116,
+                                        "variants": 552020
+                                    },
+                                    "DK": {
+                                        "sellers": 9,
+                                        "variants": 29240
+                                    },
+                                    "EE": {
+                                        "sellers": 3,
+                                        "variants": 15764
+                                    },
+                                    "ES": {
+                                        "sellers": 94,
+                                        "variants": 102496
+                                    },
+                                    "FR": {
+                                        "sellers": 39,
+                                        "variants": 15353
+                                    },
+                                    "GB": {
+                                        "sellers": 247,
+                                        "variants": 36423
+                                    },
+                                    "GR": {
+                                        "sellers": 24,
+                                        "variants": 21841
+                                    },
+                                    "HR": {
+                                        "sellers": 2,
+                                        "variants": 1058
+                                    },
+                                    "HU": {
+                                        "sellers": 10,
+                                        "variants": 5530
+                                    },
+                                    "IE": {
+                                        "sellers": 6,
+                                        "variants": 3645
+                                    },
+                                    "IT": {
+                                        "sellers": 107,
+                                        "variants": 120469
+                                    },
+                                    "LT": {
+                                        "sellers": 14,
+                                        "variants": 52116
+                                    },
+                                    "LV": {
+                                        "sellers": 12,
+                                        "variants": 32356
+                                    },
+                                    "NL": {
+                                        "sellers": 118,
+                                        "variants": 55989
+                                    },
+                                    "PL": {
+                                        "sellers": 73,
+                                        "variants": 56805
+                                    },
+                                    "PT": {
+                                        "sellers": 9,
+                                        "variants": 8987
+                                    },
+                                    "RO": {
+                                        "sellers": 27,
+                                        "variants": 18305
+                                    },
+                                    "SE": {
+                                        "sellers": 4,
+                                        "variants": 3841
+                                    },
+                                    "SI": {
+                                        "sellers": 1,
+                                        "variants": 1195
+                                    },
+                                    "SK": {
+                                        "sellers": 11,
+                                        "variants": 4942
+                                    }
+                                },
+                                "allowedShippingCountries": [
+                                    "AT",
+                                    "BE",
+                                    "BG",
+                                    "CZ",
+                                    "DE",
+                                    "DK",
+                                    "EE",
+                                    "ES",
+                                    "FI",
+                                    "FR",
+                                    "GR",
+                                    "HR",
+                                    "HU",
+                                    "IE",
+                                    "IT",
+                                    "LT",
+                                    "LU",
+                                    "LV",
+                                    "NL",
+                                    "PL",
+                                    "PT",
+                                    "RO",
+                                    "SE",
+                                    "SI",
+                                    "SK",
+                                    "GB"
+                                ],
+                                "allowedPhoneCountries": [
+                                    "AL",
+                                    "AT",
+                                    "AU",
+                                    "BE",
+                                    "BG",
+                                    "CH",
+                                    "CY",
+                                    "CZ",
+                                    "DE",
+                                    "DK",
+                                    "EE",
+                                    "ES",
+                                    "FI",
+                                    "FR",
+                                    "GB",
+                                    "GE",
+                                    "GR",
+                                    "HR",
+                                    "HU",
+                                    "IE",
+                                    "IS",
+                                    "IT",
+                                    "LI",
+                                    "LT",
+                                    "LU",
+                                    "LV",
+                                    "MA",
+                                    "MT",
+                                    "NL",
+                                    "NO",
+                                    "NZ",
+                                    "PL",
+                                    "PT",
+                                    "RO",
+                                    "RS",
+                                    "SE",
+                                    "SI",
+                                    "SK",
+                                    "TR"
+                                ],
+                                "parcelSizeOptions": [
+                                    {
+                                        "name": "package_s",
+                                        "displayName": "Small",
+                                        "length": "0.15",
+                                        "width": "0.25",
+                                        "height": "0.20"
+                                    },
+                                    {
+                                        "name": "package_m",
+                                        "displayName": "Medium",
+                                        "length": "0.30",
+                                        "width": "0.50",
+                                        "height": "0.40"
+                                    },
+                                    {
+                                        "name": "package_l",
+                                        "displayName": "Large",
+                                        "length": "0.40",
+                                        "width": "0.80",
+                                        "height": "0.60"
+                                    },
+                                    {
+                                        "name": "package_xl",
+                                        "displayName": "Extra Large",
+                                        "length": "0.50",
+                                        "width": "1.10",
+                                        "height": "0.80"
+                                    },
+                                    {
+                                        "name": "package_oversize",
+                                        "displayName": "Oversize",
+                                        "length": "1.50",
+                                        "width": "1.20",
+                                        "height": "1.20"
+                                    }
+                                ],
+                                "regionsCountries": {
+                                    "ASIA": [
+                                        "AF",
+                                        "AM",
+                                        "AZ",
+                                        "BD",
+                                        "BN",
+                                        "BT",
+                                        "CC",
+                                        "CN",
+                                        "CX",
+                                        "GE",
+                                        "HK",
+                                        "ID",
+                                        "IN",
+                                        "IO",
+                                        "JP",
+                                        "KG",
+                                        "KH",
+                                        "KP",
+                                        "KR",
+                                        "KZ",
+                                        "LA",
+                                        "LK",
+                                        "MM",
+                                        "MN",
+                                        "MO",
+                                        "MV",
+                                        "MY",
+                                        "NP",
+                                        "PH",
+                                        "PK",
+                                        "SG",
+                                        "TH",
+                                        "TJ",
+                                        "TL",
+                                        "TM",
+                                        "TW",
+                                        "UZ",
+                                        "VN"
+                                    ],
+                                    "AFRICA": [
+                                        "AO",
+                                        "BF",
+                                        "BI",
+                                        "BJ",
+                                        "BV",
+                                        "BW",
+                                        "CD",
+                                        "CF",
+                                        "CG",
+                                        "CI",
+                                        "CM",
+                                        "CV",
+                                        "DJ",
+                                        "DZ",
+                                        "EH",
+                                        "ER",
+                                        "ET",
+                                        "GA",
+                                        "GH",
+                                        "GM",
+                                        "GN",
+                                        "GQ",
+                                        "GW",
+                                        "HM",
+                                        "KE",
+                                        "KM",
+                                        "LR",
+                                        "LS",
+                                        "LY",
+                                        "MA",
+                                        "MG",
+                                        "ML",
+                                        "MR",
+                                        "MU",
+                                        "MW",
+                                        "MZ",
+                                        "NA",
+                                        "NE",
+                                        "NG",
+                                        "RE",
+                                        "RW",
+                                        "SC",
+                                        "SD",
+                                        "SH",
+                                        "SL",
+                                        "SN",
+                                        "SO",
+                                        "SS",
+                                        "ST",
+                                        "SZ",
+                                        "TD",
+                                        "TF",
+                                        "TG",
+                                        "TN",
+                                        "TZ",
+                                        "UG",
+                                        "YT",
+                                        "ZA",
+                                        "ZM",
+                                        "ZW"
+                                    ],
+                                    "EUROPE": [
+                                        "AD",
+                                        "AL",
+                                        "AX",
+                                        "BA",
+                                        "BY",
+                                        "FO",
+                                        "GB",
+                                        "GG",
+                                        "GI",
+                                        "IM",
+                                        "JE",
+                                        "MC",
+                                        "MD",
+                                        "ME",
+                                        "MK",
+                                        "RS",
+                                        "RU",
+                                        "SJ",
+                                        "SM",
+                                        "UA",
+                                        "VA"
+                                    ],
+                                    "OCEANIA": [
+                                        "AS",
+                                        "AU",
+                                        "CK",
+                                        "FJ",
+                                        "FM",
+                                        "GU",
+                                        "KI",
+                                        "MH",
+                                        "MP",
+                                        "NC",
+                                        "NF",
+                                        "NR",
+                                        "NU",
+                                        "NZ",
+                                        "PF",
+                                        "PG",
+                                        "PN",
+                                        "PW",
+                                        "SB",
+                                        "TK",
+                                        "TO",
+                                        "TV",
+                                        "UM",
+                                        "VU",
+                                        "WF",
+                                        "WS"
+                                    ],
+                                    "MIDDLE_EAST": [
+                                        "AE",
+                                        "BH",
+                                        "EG",
+                                        "IL",
+                                        "IQ",
+                                        "IR",
+                                        "JO",
+                                        "KW",
+                                        "LB",
+                                        "OM",
+                                        "PS",
+                                        "QA",
+                                        "SA",
+                                        "SY",
+                                        "TR",
+                                        "YE"
+                                    ],
+                                    "NORTH_AMERICA": [
+                                        "AG",
+                                        "AI",
+                                        "AW",
+                                        "BB",
+                                        "BL",
+                                        "BM",
+                                        "BQ",
+                                        "BS",
+                                        "BZ",
+                                        "CA",
+                                        "CR",
+                                        "CU",
+                                        "CW",
+                                        "DM",
+                                        "DO",
+                                        "GD",
+                                        "GL",
+                                        "GP",
+                                        "GT",
+                                        "HN",
+                                        "HT",
+                                        "JM",
+                                        "KN",
+                                        "KY",
+                                        "LC",
+                                        "MF",
+                                        "MQ",
+                                        "MS",
+                                        "MX",
+                                        "NI",
+                                        "PA",
+                                        "PM",
+                                        "PR",
+                                        "SV",
+                                        "TC",
+                                        "TT",
+                                        "US",
+                                        "VC",
+                                        "VG",
+                                        "VI"
+                                    ],
+                                    "SOUTH_AMERICA": [
+                                        "AR",
+                                        "BO",
+                                        "BR",
+                                        "CL",
+                                        "CO",
+                                        "EC",
+                                        "FK",
+                                        "GF",
+                                        "GS",
+                                        "GY",
+                                        "PE",
+                                        "PY",
+                                        "SR",
+                                        "SX",
+                                        "UY",
+                                        "VE"
+                                    ],
+                                    "EU_SINGLE_MARKET": [
+                                        "AT",
+                                        "BE",
+                                        "BG",
+                                        "CH",
+                                        "CY",
+                                        "CZ",
+                                        "DE",
+                                        "DK",
+                                        "EE",
+                                        "ES",
+                                        "FI",
+                                        "FR",
+                                        "GR",
+                                        "HR",
+                                        "HU",
+                                        "IE",
+                                        "IS",
+                                        "IT",
+                                        "LI",
+                                        "LT",
+                                        "LU",
+                                        "LV",
+                                        "MT",
+                                        "NL",
+                                        "NO",
+                                        "PL",
+                                        "PT",
+                                        "RO",
+                                        "SE",
+                                        "SI",
+                                        "SK"
+                                    ]
+                                }
+                            },
+                            "dataUpdateCount": 1,
+                            "dataUpdatedAt": 1737448408185,
+                            "error": null,
+                            "errorUpdateCount": 0,
+                            "errorUpdatedAt": 0,
+                            "fetchFailureCount": 0,
+                            "fetchFailureReason": null,
+                            "fetchMeta": null,
+                            "isInvalidated": false,
+                            "status": "success",
+                            "fetchStatus": "idle"
+                        },
+                        "queryKey": [
+                            "info"
+                        ],
+                        "queryHash": "[\"info\"]"
+                    },
+                    {
+                        "state": {
+                            "data": {
+                                "count": 755,
+                                "next": "http://api.qogita.com/categories/?page=2&size=20",
+                                "previous": null,
+                                "results": [
+                                    {
+                                        "name": "Lip Balm",
+                                        "slug": "lip-balm",
+                                        "description": "",
+                                        "hscode": "33040000",
+                                        "qid": "8ade4136-c973-41f9-a843-cc3e67138309"
+                                    },
+                                    {
+                                        "name": "Orthodontic Appliance Cases",
+                                        "slug": "orthodontic-appliance-cases",
+                                        "description": "",
+                                        "hscode": "94020000",
+                                        "qid": "d3ef8a4a-7e3f-453d-897f-0f6d6b1819e9"
+                                    },
+                                    {
+                                        "name": "Accessibility Furniture & Fixtures",
+                                        "slug": "accessibility-furniture-fixtures",
+                                        "description": "",
+                                        "hscode": "94036010",
+                                        "qid": "e38b2ff5-ef31-47e5-b089-623037c0fa23"
+                                    },
+                                    {
+                                        "name": "Mobility Scooters",
+                                        "slug": "mobility-scooters",
+                                        "description": "",
+                                        "hscode": "84286000",
+                                        "qid": "6579cfb2-4565-4853-ae26-16252e4a915a"
+                                    },
+                                    {
+                                        "name": "Transfer Boards & Sheets",
+                                        "slug": "transfer-boards-sheets",
+                                        "description": "",
+                                        "hscode": "96190089",
+                                        "qid": "efb71de2-08b0-4d18-bfdc-191cf9b803a2"
+                                    },
+                                    {
+                                        "name": "Eyewear Replacement Parts",
+                                        "slug": "eyewear-replacement-parts",
+                                        "description": "",
+                                        "hscode": "84531000",
+                                        "qid": "d10fd79b-3c32-459f-9877-178976906885"
+                                    },
+                                    {
+                                        "name": "Medical Tests",
+                                        "slug": "medical-tests",
+                                        "description": "",
+                                        "hscode": "90191000",
+                                        "qid": "e748fd0d-e1c5-43bd-910a-ca4bfa6b31e4"
+                                    },
+                                    {
+                                        "name": "Jewellery Cleaning Tools",
+                                        "slug": "jewellery-cleaning-tools",
+                                        "description": "",
+                                        "hscode": "33062000",
+                                        "qid": "78866ae5-26e3-40f9-afaf-6c0fc45683b2"
+                                    },
+                                    {
+                                        "name": "Make-up Tools",
+                                        "slug": "make-up-tools",
+                                        "description": "",
+                                        "hscode": "33042000",
+                                        "qid": "605411f7-7d03-488f-89ed-a2d8639da0bc"
+                                    },
+                                    {
+                                        "name": "Lip Makeup",
+                                        "slug": "lip-makeup",
+                                        "description": "",
+                                        "hscode": "33041000",
+                                        "qid": "86c60b77-f5fa-4c19-b4ef-9d7458c33ac9"
+                                    },
+                                    {
+                                        "name": "Therapeutic Swings",
+                                        "slug": "therapeutic-swings",
+                                        "description": "",
+                                        "hscode": "95069100",
+                                        "qid": "f56820c8-79e3-462e-8f0b-4d2b7f98b6d6"
+                                    },
+                                    {
+                                        "name": "Power Flossers",
+                                        "slug": "power-flossers",
+                                        "description": "",
+                                        "hscode": "96032100",
+                                        "qid": "248674f1-1569-4643-8d28-a5054d180437"
+                                    },
+                                    {
+                                        "name": "Fertility Tests & Monitors",
+                                        "slug": "fertility-tests-monitors",
+                                        "description": "",
+                                        "hscode": "40141000",
+                                        "qid": "b4406d3e-cc25-403f-a7b6-90b596ba042c"
+                                    },
+                                    {
+                                        "name": "Jewellery Steam Cleaners",
+                                        "slug": "jewellery-steam-cleaners",
+                                        "description": "",
+                                        "hscode": "33021000",
+                                        "qid": "9b386b46-7e8d-4459-9a08-efaf7f25bdd7"
+                                    },
+                                    {
+                                        "name": "Travel Sets",
+                                        "slug": "travel-sets",
+                                        "description": "",
+                                        "hscode": "",
+                                        "qid": "6b1d4299-9520-466f-a9e8-10d0f4614df0"
+                                    },
+                                    {
+                                        "name": "Facial Cleansing Brushes",
+                                        "slug": "facial-cleansing-brushes",
+                                        "description": "",
+                                        "hscode": "",
+                                        "qid": "88cd0558-2919-430a-afb2-34b3b36c2727"
+                                    },
+                                    {
+                                        "name": "Extrait De Parfum",
+                                        "slug": "extrait-de-parfum",
+                                        "description": "",
+                                        "hscode": "",
+                                        "qid": "aa010719-5e10-4088-83f1-332730140969"
+                                    },
+                                    {
+                                        "name": "Facial Cleansing Tools",
+                                        "slug": "facial-cleansing-tools",
+                                        "description": "",
+                                        "hscode": "",
+                                        "qid": "7de39e78-48f8-415e-89fd-15bf5ccc05f2"
+                                    },
+                                    {
+                                        "name": "Micro Needle Rollers",
+                                        "slug": "micro-needle-rollers",
+                                        "description": "",
+                                        "hscode": "",
+                                        "qid": "c8dff806-a3d6-4629-b2ad-042a3f5767fe"
+                                    },
+                                    {
+                                        "name": "Facial Massage",
+                                        "slug": "facial-massage",
+                                        "description": "",
+                                        "hscode": "",
+                                        "qid": "9a9f4038-f569-4b3b-af54-657f5a700649"
+                                    }
+                                ]
+                            },
+                            "dataUpdateCount": 1,
+                            "dataUpdatedAt": 1737448408191,
+                            "error": null,
+                            "errorUpdateCount": 0,
+                            "errorUpdatedAt": 0,
+                            "fetchFailureCount": 0,
+                            "fetchFailureReason": null,
+                            "fetchMeta": null,
+                            "isInvalidated": false,
+                            "status": "success",
+                            "fetchStatus": "idle"
+                        },
+                        "queryKey": [
+                            "categories",
+                            "list",
+                            {
+                                "page": 1,
+                                "size": 20,
+                                "slugs": []
+                            }
+                        ],
+                        "queryHash": "[\"categories\",\"list\",{\"page\":1,\"size\":20,\"slugs\":[]}]"
+                    },
+                    {
+                        "state": {
+                            "data": {
+                                "count": 8,
+                                "next": null,
+                                "previous": null,
+                                "results": [
+                                    {
+                                        "name": "Barcode Cream Wax Styling Effect 150ml",
+                                        "gtin": "8682742800456",
+                                        "categoryName": "Wax",
+                                        "brandName": "Barcode",
+                                        "slug": "barcode-cream-wax-styling-effect-150ml",
+                                        "fid": "c1c4f5903a644c38a8f1cf05a29b060c",
+                                        "imageUrl": "https://static.prod.qogita.com/files/images/variants/dD6XZy4jZ4t9pStBYEkqUe.jpg",
+                                        "price": null,
+                                        "priceCurrency": null,
+                                        "position": 1,
+                                        "unit": null
+                                    },
+                                    {
+                                        "name": "Barcode Intensive Serum 15ml with Snail Slime Aspersina for Perioral Wrinkles",
+                                        "gtin": "8051128636055",
+                                        "categoryName": "Anti-Aging Serum",
+                                        "brandName": "Pharmalife",
+                                        "slug": "barcode-intensive-serum-15ml-with-snail-slime-aspersina-for-perioral-wrinkles",
+                                        "fid": "c767a79d5c594c82befee9d9aed74088",
+                                        "imageUrl": "https://static.prod.qogita.com/files/images/variants/EnjcBAXxD5sDa8ZHRZmy6q.jpg",
+                                        "price": null,
+                                        "priceCurrency": null,
+                                        "position": 2,
+                                        "unit": null
+                                    },
+                                    {
+                                        "name": "Barcode Professional Hair Shampoo Silver Protect 1000ml",
+                                        "gtin": "8682355000069",
+                                        "categoryName": "Shampoo",
+                                        "brandName": "Barcode Professional",
+                                        "slug": "barcode-professional-hair-shampoo-silver-protect-1000ml",
+                                        "fid": "3XKUXaLbvY",
+                                        "imageUrl": "https://static.prod.qogita.com/files/images/variants/WwuwXwzAmumzQ8iaYG3cdm.jpg",
+                                        "price": null,
+                                        "priceCurrency": null,
+                                        "position": 3,
+                                        "unit": null
+                                    },
+                                    {
+                                        "name": "Barcode Professional Women Hair Shampoo For Dry and Damaged 1000ml",
+                                        "gtin": "8682355000090",
+                                        "categoryName": "Shampoo",
+                                        "brandName": "Barcode Professional",
+                                        "slug": "barcode-professional-women-hair-shampoo-for-dry-and-damaged-1000ml",
+                                        "fid": "HicYQ8f2Dv",
+                                        "imageUrl": "https://static.prod.qogita.com/files/images/variants/KMnFpvGDL9F7Uq3GUERz5g.jpg",
+                                        "price": null,
+                                        "priceCurrency": null,
+                                        "position": 4,
+                                        "unit": null
+                                    },
+                                    {
+                                        "name": "Barcode Professional Hair Conditioner Cream Color Protect 750ml",
+                                        "gtin": "8682355000137",
+                                        "categoryName": "Conditioner",
+                                        "brandName": "Barcode Professional",
+                                        "slug": "barcode-professional-hair-conditioner-cream-color-protect-750ml",
+                                        "fid": "DKHBmHNzZz",
+                                        "imageUrl": "https://static.prod.qogita.com/files/images/variants/n2yNMFqAmUfVuXvVKHxYKm.jpg",
+                                        "price": null,
+                                        "priceCurrency": null,
+                                        "position": 5,
+                                        "unit": null
+                                    },
+                                    {
+                                        "name": "Barcode Professional Women Hair Shampoo Keratin Therapy 1000ml",
+                                        "gtin": "8682355000106",
+                                        "categoryName": "Shampoo",
+                                        "brandName": "Barcode Professional",
+                                        "slug": "barcode-professional-women-hair-shampoo-keratin-therapy-1000ml",
+                                        "fid": "8tNKnFC8QP",
+                                        "imageUrl": "https://static.prod.qogita.com/files/images/variants/Q4ZHgyDUPZjzKAoParmHti.jpg",
+                                        "price": null,
+                                        "priceCurrency": null,
+                                        "position": 6,
+                                        "unit": null
+                                    },
+                                    {
+                                        "name": "Barcode Professional Liquid Conditioner Color Protect 400ml",
+                                        "gtin": "8682355000182",
+                                        "categoryName": "Conditioner",
+                                        "brandName": "Barcode Professional",
+                                        "slug": "barcode-liquid-conditioner-color-protect-400ml",
+                                        "fid": "DqcYf3CzUM",
+                                        "imageUrl": "https://static.prod.qogita.com/files/images/variants/KnfJTvHekgFP7Qqr5iFmeE.jpg",
+                                        "price": null,
+                                        "priceCurrency": null,
+                                        "position": 7,
+                                        "unit": null
+                                    },
+                                    {
+                                        "name": "Barcode Professional Hair Conditioner Cream Keratin Therapy 750ml 1ml",
+                                        "gtin": "8682355000151",
+                                        "categoryName": "Conditioner",
+                                        "brandName": "Barcode Professional",
+                                        "slug": "barcode-professional-hair-conditioner-cream-keratin-therapy-750ml-1ml",
+                                        "fid": "JZ6DTWPq8s",
+                                        "imageUrl": "https://static.prod.qogita.com/files/images/variants/MvoVUmCtm38VmGRj6AyFDm.jpg",
+                                        "price": null,
+                                        "priceCurrency": null,
+                                        "position": 8,
+                                        "unit": null
+                                    }
+                                ],
+                                "facets": {
+                                    "brand": {
+                                        "Barcode Professional": 6,
+                                        "Barcode": 1,
+                                        "Pharmalife": 1
+                                    },
+                                    "category": {
+                                        "name": "Health & Beauty",
+                                        "slug": "health-beauty",
+                                        "subCategories": [
+                                            {
+                                                "name": "Hair",
+                                                "slug": "hair",
+                                                "count": 7,
+                                                "subCategories": null
+                                            },
+                                            {
+                                                "name": "Face",
+                                                "slug": "face",
+                                                "count": 1,
+                                                "subCategories": null
+                                            }
+                                        ],
+                                        "count": 8
+                                    },
+                                    "price": {
+                                        "min": null,
+                                        "max": null
+                                    }
+                                },
+                                "searchHash": "cbcde8d334a2e2acc41d395f7094e686f5fb95ba"
+                            },
+                            "dataUpdateCount": 1,
+                            "dataUpdatedAt": 1737448408245,
+                            "error": null,
+                            "errorUpdateCount": 0,
+                            "errorUpdatedAt": 0,
+                            "fetchFailureCount": 0,
+                            "fetchFailureReason": null,
+                            "fetchMeta": null,
+                            "isInvalidated": false,
+                            "status": "success",
+                            "fetchStatus": "idle"
+                        },
+                        "queryKey": [
+                            "variants",
+                            "search",
+                            {
+                                "newCategoryTreeFilterEnabled": true
+                            },
+                            {
+                                "query": "{barcode}",
+                                "page": null,
+                                "size": 24,
+                                "hasDeals": false,
+                                "brands": [],
+                                "minPrice": null,
+                                "maxPrice": null,
+                                "categories": [],
+                                "stockAvailability": "all",
+                                "country": "NL",
+                                "showWatchlistedOnly": false
+                            }
+                        ],
+                        "queryHash": "[\"variants\",\"search\",{\"newCategoryTreeFilterEnabled\":true},{\"brands\":[],\"categories\":[],\"country\":\"NL\",\"hasDeals\":false,\"maxPrice\":null,\"minPrice\":null,\"page\":null,\"query\":\"{barcode}\",\"showWatchlistedOnly\":false,\"size\":24,\"stockAvailability\":\"all\"}]"
+                    },
+                    {
+                        "state": {
+                            "data": {
+                                "country": "NL",
+                                "currency": "EUR",
+                                "showOnlyTraceableStock": false
+                            },
+                            "dataUpdateCount": 1,
+                            "dataUpdatedAt": 1737448408245,
+                            "error": null,
+                            "errorUpdateCount": 0,
+                            "errorUpdatedAt": 0,
+                            "fetchFailureCount": 0,
+                            "fetchFailureReason": null,
+                            "fetchMeta": null,
+                            "isInvalidated": false,
+                            "status": "success",
+                            "fetchStatus": "idle"
+                        },
+                        "queryKey": [
+                            "anonymousUserPreferences",
+                            {
+                                "hasFunctionalConsent": false
+                            },
+                            [
+                                "AT",
+                                "BE",
+                                "BG",
+                                "CZ",
+                                "DE",
+                                "DK",
+                                "EE",
+                                "ES",
+                                "FI",
+                                "FR",
+                                "GR",
+                                "HR",
+                                "HU",
+                                "IE",
+                                "IT",
+                                "LT",
+                                "LU",
+                                "LV",
+                                "NL",
+                                "PL",
+                                "PT",
+                                "RO",
+                                "SE",
+                                "SI",
+                                "SK",
+                                "GB"
+                            ]
+                        ],
+                        "queryHash": "[\"anonymousUserPreferences\",{\"hasFunctionalConsent\":false},[\"AT\",\"BE\",\"BG\",\"CZ\",\"DE\",\"DK\",\"EE\",\"ES\",\"FI\",\"FR\",\"GR\",\"HR\",\"HU\",\"IE\",\"IT\",\"LT\",\"LU\",\"LV\",\"NL\",\"PL\",\"PT\",\"RO\",\"SE\",\"SI\",\"SK\",\"GB\"]]"
+                    }
+                ]
+            },
+            "featureFlagState": {
+                "add-vat-validation-to-sign-up": true,
+                "buyer-can-see-only-traceable-products": true,
+                "buyers-category-facet-remap": true,
+                "buyers-no-mov-optimizer": true,
+                "buyers-referral-banner": false,
+                "buyers-render-legal-pages-via-storyblok": true,
+                "buyers-revitalized-claims-page": true,
+                "buyers-save-not-mov-met-items-to-new-cart": true,
+                "buyers-search-box": true,
+                "buyers-stock-availability-filter": true,
+                "buyers-supplier-overview-default-collapsed": false,
+                "capture-persona-enabled": true,
+                "cart-allocated-invoice-sharing-badge": true,
+                "catalog-download-including-hot-deals": true,
+                "catalog-is-watchlisted-filter": true,
+                "create-or-update-order-pipeline-deals-on-hub-spot": true,
+                "disable-payment-for-sellers-if-pln-ron-user": false,
+                "display-static-moq-on-allocation-lines": true,
+                "dummy-test-flag": false,
+                "enable-dpd-ireland": true,
+                "enable-dpd-latvia": true,
+                "enable-dpd-poland": true,
+                "enable-dpd-portugal": true,
+                "enable-dpd-romania": true,
+                "enable-dpd-spain": true,
+                "enable-recommendations-by-seller": true,
+                "enable-storage-of-watchlist-seller-recommendations": true,
+                "enable-v2-taxonomy-for-sitemap-generation": true,
+                "enable_buyer_circumvention_prevention": true,
+                "enable_seller_circumvention_prevention_for_retention": true,
+                "enable_ups_access_token_caching": true,
+                "frontend-buyers-cms-footer": true,
+                "frontend-buyers-marketplace-invoice-form": true,
+                "frontend-buyers-pdp-show-shipping-from-country-flag": false,
+                "fulfillment-feature-enable-ops-to-disable-carriers": true,
+                "fulfillment-feature-enable-sale-expiry-window": true,
+                "fulfillment-feature-enable-shipment-gating-on-claims": true,
+                "fulfillment-feature-flag-enable-automatic-order-reallocation": true,
+                "fulfillment-feature-flag-enable-for-all-sellers": false,
+                "fulfillment-feature-flag-enable-pickup-scheduling-via-aftership": false,
+                "fulfillment-feature-flag-enable-seller-tiering": false,
+                "fulfillment-feature-flag-enable-ups-for-uk-sellers": false,
+                "fulfillment-feature-flag-use-qogita-ups-integration": true,
+                "gpsr-brand-contact-page-enabled": true,
+                "hubspot-id-stored-in-db": true,
+                "integrate-hot-deals-into-order-flow": true,
+                "marketplace-Invoice-request-link": true,
+                "mov-guidelines-visible-pdp": false,
+                "new-category-tree-filter-enabled": true,
+                "new-taxonomy-enabled": true,
+                "offering-enable-consider-allocated-inventory-for-unlisted": true,
+                "offering-feature-restrict-admin-google-sso-only": true,
+                "offering-feature-use-received-at-for-expiring-offers": true,
+                "offering-inventory-use-min-price-instead-of-price-to-min-ratio": true,
+                "opt-out-refresh-token-rotation": true,
+                "optimizer-increase-quantity-for-unit-constraints": true,
+                "optimizer-model-ab-test": "no_mov_model",
+                "order-feature-flag-enable-domestic-vat": true,
+                "order-issue-hubspot-form": true,
+                "pay-with-mondu": true,
+                "qogita_is_importer_for_uk_bound_shipment": true,
+                "quantity-guidelines-in-cart": false,
+                "sale-shipment-include-free-export-declaration": true,
+                "seller-quantity-not-met-recommendations-enabled": true,
+                "seller-recommendations-for-overpurchasing": true,
+                "sellers-backend-show-watchlisted-items": true,
+                "sellers-cms-footer-enabled": true,
+                "sellers-enable-uk-importer-on-record": false,
+                "sellers-fe-initial-check-similarity": true,
+                "sellers-fe-inventory-filters-v2": true,
+                "sellers-force-ship-with-qogita-dhl": false,
+                "sellers-frontend-demand-ranking": true,
+                "sellers-frontend-inventory-stats": true,
+                "sellers-frontend-invoice-upload-bulk-update": true,
+                "sellers-frontend-onboarding-stocklist-upload-method-emails-senders-and-attachment-types": true,
+                "sellers-frontend-protect-from-decoded-goods": true,
+                "sellers-frontend-revamp-the-orders-table": true,
+                "sellers-frontend-revamp-the-orders-table-next-action": true,
+                "sellers-frontend-ship-with-qogita-domestic-sales": false,
+                "sellers-frontend-show-terms-and-conditions-modal": true,
+                "sellers-portal-contact-form": true,
+                "sellers-qogita-shipping-system-enable-ship-with-qogita": true,
+                "single-page-checkout": true,
+                "unified-suggestions-processor": true,
+                "use-automagic-endpoint-in-seller-onboarding-flow": true,
+                "use-regional-profitable-inventory-for-search-endpoint": true,
+                "use-ups-nl-account-for-nl-shipments": true,
+                "wise-recipient-toggle-new-flow": true,
+                "$flagsState": {
+                    "add-vat-validation-to-sign-up": {
+                        "variation": 0,
+                        "version": 6
+                    },
+                    "buyer-can-see-only-traceable-products": {
+                        "variation": 0,
+                        "version": 15
+                    },
+                    "buyers-category-facet-remap": {
+                        "variation": 0,
+                        "version": 3
+                    },
+                    "buyers-no-mov-optimizer": {
+                        "variation": 0,
+                        "version": 34
+                    },
+                    "buyers-referral-banner": {
+                        "variation": 1,
+                        "version": 4
+                    },
+                    "buyers-render-legal-pages-via-storyblok": {
+                        "variation": 0,
+                        "version": 6
+                    },
+                    "buyers-revitalized-claims-page": {
+                        "variation": 0,
+                        "version": 3
+                    },
+                    "buyers-save-not-mov-met-items-to-new-cart": {
+                        "variation": 0,
+                        "version": 3
+                    },
+                    "buyers-search-box": {
+                        "variation": 0,
+                        "version": 9
+                    },
+                    "buyers-stock-availability-filter": {
+                        "variation": 0,
+                        "version": 12
+                    },
+                    "buyers-supplier-overview-default-collapsed": {
+                        "variation": 1,
+                        "version": 2
+                    },
+                    "capture-persona-enabled": {
+                        "variation": 0,
+                        "version": 3
+                    },
+                    "cart-allocated-invoice-sharing-badge": {
+                        "variation": 0,
+                        "version": 7
+                    },
+                    "catalog-download-including-hot-deals": {
+                        "variation": 0,
+                        "version": 10
+                    },
+                    "catalog-is-watchlisted-filter": {
+                        "variation": 0,
+                        "version": 5
+                    },
+                    "create-or-update-order-pipeline-deals-on-hub-spot": {
+                        "variation": 0,
+                        "version": 18
+                    },
+                    "disable-payment-for-sellers-if-pln-ron-user": {
+                        "variation": 1,
+                        "version": 8
+                    },
+                    "display-static-moq-on-allocation-lines": {
+                        "variation": 0,
+                        "version": 3
+                    },
+                    "dummy-test-flag": {
+                        "variation": 1,
+                        "version": 2
+                    },
+                    "enable-dpd-ireland": {
+                        "variation": 0,
+                        "version": 4
+                    },
+                    "enable-dpd-latvia": {
+                        "variation": 0,
+                        "version": 9
+                    },
+                    "enable-dpd-poland": {
+                        "variation": 0,
+                        "version": 6
+                    },
+                    "enable-dpd-portugal": {
+                        "variation": 0,
+                        "version": 11
+                    },
+                    "enable-dpd-romania": {
+                        "variation": 0,
+                        "version": 6
+                    },
+                    "enable-dpd-spain": {
+                        "variation": 0,
+                        "version": 17
+                    },
+                    "enable-recommendations-by-seller": {
+                        "variation": 0,
+                        "version": 15
+                    },
+                    "enable-storage-of-watchlist-seller-recommendations": {
+                        "variation": 0,
+                        "version": 7
+                    },
+                    "enable-v2-taxonomy-for-sitemap-generation": {
+                        "variation": 0,
+                        "version": 6
+                    },
+                    "enable_buyer_circumvention_prevention": {
+                        "variation": 0,
+                        "version": 3
+                    },
+                    "enable_seller_circumvention_prevention_for_retention": {
+                        "variation": 0,
+                        "version": 6
+                    },
+                    "enable_ups_access_token_caching": {
+                        "variation": 0,
+                        "version": 11
+                    },
+                    "frontend-buyers-cms-footer": {
+                        "variation": 0,
+                        "version": 3
+                    },
+                    "frontend-buyers-marketplace-invoice-form": {
+                        "variation": 0,
+                        "version": 6
+                    },
+                    "frontend-buyers-pdp-show-shipping-from-country-flag": {
+                        "variation": 1,
+                        "version": 2
+                    },
+                    "fulfillment-feature-enable-ops-to-disable-carriers": {
+                        "variation": 0,
+                        "version": 6
+                    },
+                    "fulfillment-feature-enable-sale-expiry-window": {
+                        "variation": 0,
+                        "version": 5
+                    },
+                    "fulfillment-feature-enable-shipment-gating-on-claims": {
+                        "variation": 0,
+                        "version": 7
+                    },
+                    "fulfillment-feature-flag-enable-automatic-order-reallocation": {
+                        "variation": 0,
+                        "version": 17
+                    },
+                    "fulfillment-feature-flag-enable-for-all-sellers": {
+                        "variation": 1,
+                        "version": 7
+                    },
+                    "fulfillment-feature-flag-enable-pickup-scheduling-via-aftership": {
+                        "variation": 1,
+                        "version": 4
+                    },
+                    "fulfillment-feature-flag-enable-seller-tiering": {
+                        "variation": 1,
+                        "version": 3
+                    },
+                    "fulfillment-feature-flag-enable-ups-for-uk-sellers": {
+                        "variation": 1,
+                        "version": 9
+                    },
+                    "fulfillment-feature-flag-use-qogita-ups-integration": {
+                        "variation": 0,
+                        "version": 3
+                    },
+                    "gpsr-brand-contact-page-enabled": {
+                        "variation": 0,
+                        "version": 9
+                    },
+                    "hubspot-id-stored-in-db": {
+                        "variation": 0,
+                        "version": 7
+                    },
+                    "integrate-hot-deals-into-order-flow": {
+                        "variation": 0,
+                        "version": 13
+                    },
+                    "marketplace-Invoice-request-link": {
+                        "variation": 0,
+                        "version": 5
+                    },
+                    "mov-guidelines-visible-pdp": {
+                        "variation": 1,
+                        "version": 5
+                    },
+                    "new-category-tree-filter-enabled": {
+                        "variation": 0,
+                        "version": 10
+                    },
+                    "new-taxonomy-enabled": {
+                        "variation": 0,
+                        "version": 12
+                    },
+                    "offering-enable-consider-allocated-inventory-for-unlisted": {
+                        "variation": 0,
+                        "version": 3
+                    },
+                    "offering-feature-restrict-admin-google-sso-only": {
+                        "variation": 0,
+                        "version": 3
+                    },
+                    "offering-feature-use-received-at-for-expiring-offers": {
+                        "variation": 0,
+                        "version": 6
+                    },
+                    "offering-inventory-use-min-price-instead-of-price-to-min-ratio": {
+                        "variation": 0,
+                        "version": 4
+                    },
+                    "opt-out-refresh-token-rotation": {
+                        "variation": 0,
+                        "version": 9
+                    },
+                    "optimizer-increase-quantity-for-unit-constraints": {
+                        "variation": 0,
+                        "version": 18
+                    },
+                    "optimizer-model-ab-test": {
+                        "variation": 0,
+                        "version": 2
+                    },
+                    "order-feature-flag-enable-domestic-vat": {
+                        "variation": 0,
+                        "version": 7
+                    },
+                    "order-issue-hubspot-form": {
+                        "variation": 0,
+                        "version": 10
+                    },
+                    "pay-with-mondu": {
+                        "variation": 0,
+                        "version": 12
+                    },
+                    "qogita_is_importer_for_uk_bound_shipment": {
+                        "variation": 0,
+                        "version": 7
+                    },
+                    "quantity-guidelines-in-cart": {
+                        "variation": 1,
+                        "version": 13
+                    },
+                    "sale-shipment-include-free-export-declaration": {
+                        "variation": 0,
+                        "version": 7
+                    },
+                    "seller-quantity-not-met-recommendations-enabled": {
+                        "variation": 0,
+                        "version": 3
+                    },
+                    "seller-recommendations-for-overpurchasing": {
+                        "variation": 0,
+                        "version": 10
+                    },
+                    "sellers-backend-show-watchlisted-items": {
+                        "variation": 0,
+                        "version": 3
+                    },
+                    "sellers-cms-footer-enabled": {
+                        "variation": 0,
+                        "version": 3
+                    },
+                    "sellers-enable-uk-importer-on-record": {
+                        "variation": 1,
+                        "version": 8
+                    },
+                    "sellers-fe-initial-check-similarity": {
+                        "variation": 0,
+                        "version": 7
+                    },
+                    "sellers-fe-inventory-filters-v2": {
+                        "variation": 0,
+                        "version": 12
+                    },
+                    "sellers-force-ship-with-qogita-dhl": {
+                        "variation": 1,
+                        "version": 4
+                    },
+                    "sellers-frontend-demand-ranking": {
+                        "variation": 0,
+                        "version": 5
+                    },
+                    "sellers-frontend-inventory-stats": {
+                        "variation": 0,
+                        "version": 3
+                    },
+                    "sellers-frontend-invoice-upload-bulk-update": {
+                        "variation": 0,
+                        "version": 7
+                    },
+                    "sellers-frontend-onboarding-stocklist-upload-method-emails-senders-and-attachment-types": {
+                        "variation": 0,
+                        "version": 3
+                    },
+                    "sellers-frontend-protect-from-decoded-goods": {
+                        "variation": 0,
+                        "version": 6
+                    },
+                    "sellers-frontend-revamp-the-orders-table": {
+                        "variation": 0,
+                        "version": 11
+                    },
+                    "sellers-frontend-revamp-the-orders-table-next-action": {
+                        "variation": 0,
+                        "version": 6
+                    },
+                    "sellers-frontend-ship-with-qogita-domestic-sales": {
+                        "variation": 1,
+                        "version": 5
+                    },
+                    "sellers-frontend-show-terms-and-conditions-modal": {
+                        "variation": 0,
+                        "version": 4
+                    },
+                    "sellers-portal-contact-form": {
+                        "variation": 0,
+                        "version": 3
+                    },
+                    "sellers-qogita-shipping-system-enable-ship-with-qogita": {
+                        "variation": 0,
+                        "version": 6
+                    },
+                    "single-page-checkout": {
+                        "variation": 0,
+                        "version": 7
+                    },
+                    "unified-suggestions-processor": {
+                        "variation": 0,
+                        "version": 23
+                    },
+                    "use-automagic-endpoint-in-seller-onboarding-flow": {
+                        "variation": 0,
+                        "version": 3
+                    },
+                    "use-regional-profitable-inventory-for-search-endpoint": {
+                        "variation": 0,
+                        "version": 7
+                    },
+                    "use-ups-nl-account-for-nl-shipments": {
+                        "variation": 0,
+                        "version": 4
+                    },
+                    "wise-recipient-toggle-new-flow": {
+                        "variation": 0,
+                        "version": 5
+                    }
+                },
+                "$valid": true
+            },
+            "initialStory": {
+                "name": "App layout",
+                "created_at": "2024-07-23T11:58:33.488Z",
+                "published_at": "2024-07-24T10:24:44.384Z",
+                "updated_at": "2024-07-24T10:24:44.396Z",
+                "id": 526969445,
+                "uuid": "c2608c1e-bdba-4888-87db-af8cc9c94363",
+                "content": {
+                    "_uid": "5bdb0983-0d38-4e8a-83aa-740376fae903",
+                    "body": [],
+                    "footer": [
+                        {
+                            "name": "Footer (buyers)",
+                            "created_at": "2024-07-24T10:21:34.956Z",
+                            "published_at": "2024-11-22T13:08:58.647Z",
+                            "updated_at": "2024-11-22T13:08:58.666Z",
+                            "id": 527534730,
+                            "uuid": "101c6dcb-352e-453e-8e43-348aae88b9b8",
+                            "content": {
+                                "_uid": "7c6f52b9-1ef4-4d5a-89b0-ec6b60865210",
+                                "sections": [
+                                    {
+                                        "_uid": "0c6a8d05-2c62-415c-9f47-37b2d599c3ad",
+                                        "links": [
+                                            {
+                                                "_uid": "33ec85eb-9766-4264-b11c-2cdfd75396a7",
+                                                "link": {
+                                                    "id": "",
+                                                    "url": "/catalog",
+                                                    "linktype": "url",
+                                                    "fieldtype": "multilink",
+                                                    "cached_url": "/catalog"
+                                                },
+                                                "label": "Qogita Catalog",
+                                                "component": "cta"
+                                            },
+                                            {
+                                                "_uid": "09131398-92fa-45d0-86fc-a7f5752ffc5b",
+                                                "link": {
+                                                    "id": "",
+                                                    "url": "/hot-deals",
+                                                    "linktype": "url",
+                                                    "fieldtype": "multilink",
+                                                    "cached_url": "/hot-deals"
+                                                },
+                                                "label": "Hot Deals",
+                                                "component": "cta"
+                                            },
+                                            {
+                                                "_uid": "58489949-6a26-47f2-97f4-10fab39efa29",
+                                                "link": {
+                                                    "id": "",
+                                                    "url": "https://www.youtube.com/watch?v=neFOp6egDAI&ab_channel=QogitaWholesale",
+                                                    "linktype": "url",
+                                                    "fieldtype": "multilink",
+                                                    "cached_url": "https://www.youtube.com/watch?v=neFOp6egDAI&ab_channel=QogitaWholesale"
+                                                },
+                                                "label": "How to Order",
+                                                "component": "cta"
+                                            },
+                                            {
+                                                "_uid": "a513d326-9f94-46df-822a-8ae41d0ee7bb",
+                                                "link": {
+                                                    "id": "",
+                                                    "url": "https://help.qogita.com/proving-chain-of-supply",
+                                                    "linktype": "url",
+                                                    "fieldtype": "multilink",
+                                                    "cached_url": "https://help.qogita.com/proving-chain-of-supply"
+                                                },
+                                                "label": "Proving Chain of Supply",
+                                                "component": "cta"
+                                            }
+                                        ],
+                                        "title": "Our solutions",
+                                        "component": "footerSection"
+                                    },
+                                    {
+                                        "_uid": "d4c2a5d3-ad9a-4b54-91a8-4df560dbef02",
+                                        "links": [
+                                            {
+                                                "_uid": "12064c93-3764-4cd6-9456-e2efab7a68f7",
+                                                "link": {
+                                                    "id": "",
+                                                    "url": "/quality-assurance",
+                                                    "linktype": "url",
+                                                    "fieldtype": "multilink",
+                                                    "cached_url": "/quality-assurance"
+                                                },
+                                                "label": "Quality Assurance",
+                                                "component": "cta"
+                                            },
+                                            {
+                                                "_uid": "3469032b-b9af-41c3-8426-b4675cc9ef2f",
+                                                "link": {
+                                                    "id": "",
+                                                    "url": "/supplier-partnerships/",
+                                                    "linktype": "url",
+                                                    "fieldtype": "multilink",
+                                                    "cached_url": "/supplier-partnerships/"
+                                                },
+                                                "label": "Supplier Partnerships",
+                                                "component": "cta"
+                                            },
+                                            {
+                                                "_uid": "8a3aa486-d12f-4936-a1f9-fdb156bed32f",
+                                                "link": {
+                                                    "id": "",
+                                                    "url": "/credit-offering",
+                                                    "linktype": "url",
+                                                    "fieldtype": "multilink",
+                                                    "cached_url": "/credit-offering"
+                                                },
+                                                "label": "Buy Now Pay Later",
+                                                "component": "cta"
+                                            },
+                                            {
+                                                "_uid": "a293ff5e-8d98-48c8-8524-9746df08f949",
+                                                "link": {
+                                                    "id": "",
+                                                    "url": "/logistics",
+                                                    "linktype": "url",
+                                                    "fieldtype": "multilink",
+                                                    "cached_url": "/logistics"
+                                                },
+                                                "label": "Logistics",
+                                                "component": "cta"
+                                            }
+                                        ],
+                                        "title": "How we work",
+                                        "component": "footerSection"
+                                    },
+                                    {
+                                        "_uid": "fd33327d-3cc5-4ffa-b5c3-94568d21cb17",
+                                        "links": [
+                                            {
+                                                "_uid": "6094a593-3ef5-4219-84fb-ad047923a31a",
+                                                "link": {
+                                                    "id": "",
+                                                    "url": "https://qogita.notion.site/Qogita-API-d2e0a30921d646b19b9468aebe2a03dc",
+                                                    "linktype": "url",
+                                                    "fieldtype": "multilink",
+                                                    "cached_url": "https://qogita.notion.site/Qogita-API-d2e0a30921d646b19b9468aebe2a03dc"
+                                                },
+                                                "label": "API Documentation",
+                                                "component": "cta"
+                                            },
+                                            {
+                                                "_uid": "526dd1ef-9ba1-4cfe-9a83-fd529e9ffbd3",
+                                                "link": {
+                                                    "id": "",
+                                                    "url": "https://help.qogita.com/",
+                                                    "linktype": "url",
+                                                    "fieldtype": "multilink",
+                                                    "cached_url": "https://help.qogita.com/"
+                                                },
+                                                "label": "Help Center",
+                                                "component": "cta"
+                                            },
+                                            {
+                                                "_uid": "3eaa2a09-432d-46d9-9f9c-b82332f8cab4",
+                                                "link": {
+                                                    "id": "",
+                                                    "url": "https://status.qogita.com/",
+                                                    "linktype": "url",
+                                                    "fieldtype": "multilink",
+                                                    "cached_url": "https://status.qogita.com/"
+                                                },
+                                                "label": "System Status",
+                                                "component": "cta"
+                                            },
+                                            {
+                                                "_uid": "f955574c-82cd-455a-9719-671323f20fee",
+                                                "link": {
+                                                    "id": "",
+                                                    "url": "https://help.qogita.com/support-for-marketplace-resellers",
+                                                    "linktype": "url",
+                                                    "fieldtype": "multilink",
+                                                    "cached_url": "https://help.qogita.com/support-for-marketplace-resellers"
+                                                },
+                                                "label": "Support For Marketplace Resellers",
+                                                "component": "cta"
+                                            },
+                                            {
+                                                "_uid": "196038d9-683f-4cec-9319-daac48ad87b5",
+                                                "link": {
+                                                    "id": "",
+                                                    "url": "https://help.qogita.com/information-about-claims",
+                                                    "linktype": "url",
+                                                    "fieldtype": "multilink",
+                                                    "cached_url": "https://help.qogita.com/information-about-claims"
+                                                },
+                                                "label": "Raising a Claim",
+                                                "component": "cta"
+                                            }
+                                        ],
+                                        "title": "Resources",
+                                        "component": "footerSection"
+                                    },
+                                    {
+                                        "_uid": "9209b614-7cd4-461c-b5ce-674228dc3579",
+                                        "links": [
+                                            {
+                                                "_uid": "4753bf90-bcd9-495e-9062-5665823a9f9e",
+                                                "link": {
+                                                    "id": "",
+                                                    "url": "/about-qogita",
+                                                    "linktype": "url",
+                                                    "fieldtype": "multilink",
+                                                    "cached_url": "/about-qogita"
+                                                },
+                                                "label": "About us",
+                                                "component": "cta"
+                                            },
+                                            {
+                                                "_uid": "c43e2d5c-67a4-4d32-995f-a5031f08d947",
+                                                "link": {
+                                                    "id": "",
+                                                    "url": "/careers",
+                                                    "linktype": "url",
+                                                    "fieldtype": "multilink",
+                                                    "cached_url": "/careers"
+                                                },
+                                                "label": "Careers",
+                                                "component": "cta"
+                                            },
+                                            {
+                                                "_uid": "93ef1ec0-8128-4049-9bcc-4656d95282c4",
+                                                "link": {
+                                                    "id": "",
+                                                    "url": "https://sellers.qogita.com/",
+                                                    "linktype": "url",
+                                                    "fieldtype": "multilink",
+                                                    "cached_url": "https://sellers.qogita.com/"
+                                                },
+                                                "label": "Become a seller",
+                                                "component": "cta"
+                                            },
+                                            {
+                                                "_uid": "3affe3de-c414-46e9-a6b3-11e063b1ecc0",
+                                                "link": {
+                                                    "id": "",
+                                                    "url": "/contact",
+                                                    "linktype": "url",
+                                                    "fieldtype": "multilink",
+                                                    "cached_url": "/contact"
+                                                },
+                                                "label": "Contact us",
+                                                "component": "cta"
+                                            },
+                                            {
+                                                "_uid": "ab7a1e58-15f2-457f-b787-c1654e524750",
+                                                "link": {
+                                                    "id": "f296c0fe-afb4-4321-bc0b-3b4d83b657fd",
+                                                    "url": "",
+                                                    "linktype": "story",
+                                                    "fieldtype": "multilink",
+                                                    "cached_url": "reviews"
+                                                },
+                                                "label": "Reviews",
+                                                "component": "cta"
+                                            }
+                                        ],
+                                        "title": "Company",
+                                        "component": "footerSection"
+                                    }
+                                ],
+                                "component": "footer"
+                            },
+                            "slug": "footer",
+                            "full_slug": "global/footer",
+                            "sort_by_date": null,
+                            "position": -10,
+                            "tag_list": [],
+                            "is_startpage": false,
+                            "parent_id": 527009991,
+                            "meta_data": null,
+                            "group_id": "9fe8a847-c5c4-4c56-81cc-2766f4d3c330",
+                            "first_published_at": "2024-07-24T10:22:57.566Z",
+                            "release_id": null,
+                            "lang": "default",
+                            "path": "/",
+                            "alternates": [],
+                            "default_full_slug": null,
+                            "translated_slugs": null,
+                            "_stopResolving": true
+                        }
+                    ],
+                    "layout": [
+                        "e1aa371b-566e-4064-aec2-f403b468765e"
+                    ],
+                    "metadata": "",
+                    "component": "page"
+                },
+                "slug": "app-layout",
+                "full_slug": "app-layout",
+                "sort_by_date": null,
+                "position": -120,
+                "tag_list": [
+                    "engineering-only"
+                ],
+                "is_startpage": false,
+                "parent_id": null,
+                "meta_data": null,
+                "group_id": "c4506cef-72ab-48ef-af6c-168f9d167f07",
+                "first_published_at": "2024-07-24T10:24:44.384Z",
+                "release_id": null,
+                "lang": "default",
+                "path": null,
+                "alternates": [],
+                "default_full_slug": null,
+                "translated_slugs": null
+            },
+            "initialMonduMarketingBannerVisibility": "visible",
+            "auth": {
+                "isAuthenticated": false
+            }
+        },
+        "__N_SSP": true
+    },
+    "page": "/products",
+    "query": {
+        "query": "{barcode}"
+    },
+    "buildId": "y-rKC0nCN5sL50QcnHtgb",
+    "isFallback": false,
+    "isExperimentalCompile": false,
+    "gssp": true,
+    "locale": "en",
+    "locales": [
+        "en"
+    ],
+    "defaultLocale": "en",
+    "scriptLoader": []
+}
