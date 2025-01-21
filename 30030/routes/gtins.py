@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup
 import requests as r
 import datetime
 
-from sympy import product
 
 def get_product():
     product={
