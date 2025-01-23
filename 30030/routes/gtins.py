@@ -40,6 +40,28 @@ def search_openbeauty(barcode):
         return response.json() if response.status_code == 200 else None
     except requests.RequestException:
         return product
+
+def get_basic_gtin(barcode):
+    look_for=""""
+    <meta name="description" content="Barcode:4005808736102 - This code meet the following products: NIVEA FRESH NATURAL SPRAY 150ML; Nivea deo Spray assort. 150ml; NIVEA DEO FRESH NATURAL 150ML" >
+    """
+    product=get_product(s)
+    url = f"https://barcode-list.com/barcode/EN/barcode-{barcode}/Search.htm"
+    headers = {
+        'user-agent': 'Mozilla/5.0',
+        'accept': 'application/json'
+    }
+
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        from bs4 import BeautifulSoup as BS
+        soup = BS(response.content, 'html.parser')
+        meta_tags = soup.find_all('meta')
+        for meta in meta_tags:
+            if meta.get('name') == 'description':
+                description = meta.content
+        product.update({"gtin":barcode,"description":description})
+    return product
 def search_cogita(barcode):
         
     product=get_product()
@@ -53,12 +75,11 @@ def search_cogita(barcode):
         product["images"].append(data["imageUrl"])
         product["category"]=data["categoryName"]
         product["gtin"]=data["gtin"]
-        product["source"]="Cogita"
-        product["last_update"]=datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        return product
+        product["source"]="qogita"
+        product["last_update"]=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     except Exception as e:
         print(e)
-        return product
+    return product
 
 def setup_routes(app):
     @app.route('/gtin_scanner', methods=['GET'])

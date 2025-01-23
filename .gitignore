@@ -1,1 +1,9 @@
 scratch
+__pycache__/
+*.__pycache__
+*.pyc 
+.pyc
+.dool
+.env
+*.env
+*.dool
