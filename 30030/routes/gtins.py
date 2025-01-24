@@ -46,7 +46,7 @@ def get_basic_gtin(barcode):
     url = f"https://barcode-list.com/barcode/EN/barcode-{barcode}/Search.htm"
     response = requests.get(url)
     if response.status_code == 200:
-         product['name']=response.text.splitlines()[4].split(barcode)[1].split('"')[0]
+         product['name']=response.text.splitlines("\n")[4].split(barcode)[1].split('"')[0]
     product['gtin']=barcode
     return product
 def search_cogita(barcode):
