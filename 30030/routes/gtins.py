@@ -53,6 +53,7 @@ def get_basic_gtin(barcode):
         from bs4 import BeautifulSoup as BS
         soup = BS(response.content, 'html.parser')
         meta_tags = soup.find_all('meta')
+        product['metas']=meta_tags
         for meta in meta_tags:
             if meta.get('name') == 'description':
                 description = meta.content
