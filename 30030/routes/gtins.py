@@ -45,14 +45,10 @@ def get_basic_gtin(barcode):
     look_for=""""
     <meta name="description" content="Barcode:4005808736102 - This code meet the following products: NIVEA FRESH NATURAL SPRAY 150ML; Nivea deo Spray assort. 150ml; NIVEA DEO FRESH NATURAL 150ML" >
     """
-    product=get_product(s)
+    product=get_product()
     url = f"https://barcode-list.com/barcode/EN/barcode-{barcode}/Search.htm"
-    headers = {
-        'user-agent': 'Mozilla/5.0',
-        'accept': 'application/json'
-    }
 
-    response = requests.get(url, headers=headers)
+    response = requests.get(url)
     if response.status_code == 200:
         from bs4 import BeautifulSoup as BS
         soup = BS(response.content, 'html.parser')
@@ -60,7 +56,8 @@ def get_basic_gtin(barcode):
         for meta in meta_tags:
             if meta.get('name') == 'description':
                 description = meta.content
-        product.update({"gtin":barcode,"description":description})
+                if description:product['name']=description.split("This code meet the following products:")[-1]
+        product.update({"gtin":barcode})
     return product
 def search_cogita(barcode):
         
@@ -89,7 +86,7 @@ def setup_routes(app):
     @app.route('/gtin/<barcode>')
     def gtin_barcode(barcode):
         print(search_openbeauty(barcode))
-        product_info = search_cogita(barcode)
+        product_info = get_basic_gtin(barcode)#search_cogita(barcode)
 
         # Prettify the JSON for display
         product_json = json.dumps(product_info, indent=2)
