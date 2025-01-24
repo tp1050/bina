@@ -52,7 +52,7 @@ def get_basic_gtin(barcode):
             # product['name']=response.text.splitlines()[4].split(barcode)[1].split('"')[0]
             from bs4 import BeautifulSoup as BS
             soup = BS(response.text, 'html.parser')
-            product['name']=str(soup.find_all('meta')[1]['content'])
+            product['name']=soup.find_all('meta')[1]['content']
     except:
         product['name']="No name"
     product['gtin']=barcode
