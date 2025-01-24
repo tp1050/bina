@@ -42,23 +42,12 @@ def search_openbeauty(barcode):
         return product
 
 def get_basic_gtin(barcode):
-    look_for=""""
-    <meta name="description" content="Barcode:4005808736102 - This code meet the following products: NIVEA FRESH NATURAL SPRAY 150ML; Nivea deo Spray assort. 150ml; NIVEA DEO FRESH NATURAL 150ML" >
-    """
     product=get_product()
     url = f"https://barcode-list.com/barcode/EN/barcode-{barcode}/Search.htm"
-
     response = requests.get(url)
     if response.status_code == 200:
-        from bs4 import BeautifulSoup as BS
-        soup = BS(response.content, 'html.parser')
-        meta_tags = soup.find_all('meta')
-        product['metas']=meta_tags
-        for meta in meta_tags:
-            if meta.get('name') == 'description':
-                description = meta.content
-                if description:product['name']=description.split("This code meet the following products:")[-1]
-        product.update({"gtin":barcode})
+         product['name']=response.text.splitlines()[4].split(barcode)[1].split('"')[0]
+    product['gtin']=barcode
     return product
 def search_cogita(barcode):
         
