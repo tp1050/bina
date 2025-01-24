@@ -42,11 +42,19 @@ def search_openbeauty(barcode):
         return product
 
 def get_basic_gtin(barcode):
-    product=get_product()
-    url = f"https://barcode-list.com/barcode/EN/barcode-{barcode}/Search.htm"
-    response = requests.get(url)
-    if response.status_code == 200:
-         product['name']=response.text.splitlines("\n")[4].split(barcode)[1].split('"')[0]
+    
+    product={}
+    try:
+
+        url = f"https://barcode-list.com/barcode/EN/barcode-{barcode}/Search.htm"
+        response = requests.get(url)
+        if response.status_code == 200:
+            # product['name']=response.text.splitlines()[4].split(barcode)[1].split('"')[0]
+            from bs4 import BeautifulSoup as BS
+            soup = BS(response.text, 'html.parser')
+            product['name']=str(soup.find_all('meta')[1])
+    except:
+        product['name']="No name"
     product['gtin']=barcode
     return product
 def search_cogita(barcode):
