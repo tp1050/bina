@@ -1,10 +1,12 @@
 import requests
 from flask import render_template
-
+from googletrans import Translator
+from zto4.lang.lib import add_farsi_translations
 def clean_isbn(text):
     return ''.join(c for c in text if c.isdigit() or c.upper() == 'X')
 
 def get_book_details(isbn):
+    book={}
     isbn = clean_isbn(isbn)
     url = f"https://openlibrary.org/api/books?bibkeys=ISBN:{isbn}&format=json&jscmd=data"
     response = requests.get(url)
@@ -14,7 +16,7 @@ def get_book_details(isbn):
             book_data = data.get(f"ISBN:{isbn}", {})
             description=','.join(
                     [ff['name'] for ff in book_data.get("subjects",[])])
-            return {
+            _book= {
                 'cover': book_data.get('cover', {}).get('large', ''),
                 'title': book_data.get('title', ''),
                 'authors': [author.get('name', '') for author in book_data.get('authors', [])],
@@ -24,7 +26,8 @@ def get_book_details(isbn):
                 'isbn': isbn,
                 'description':f" a book about {description}"
             }
-    return None
+        
+    return add_farsi_translations(_book)
 
 def setup_routes(app):
     @app.route('/isbn')
