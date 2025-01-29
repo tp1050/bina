@@ -19,7 +19,8 @@ def get_book_details(isbn):
                 'publisher': book_data.get('publishers', [{}])[0].get('name', ''),
                 'publish_date': book_data.get('publish_date', ''),
                 'pages': book_data.get('number_of_pages', ''),
-                'isbn': isbn
+                'isbn': isbn,
+                'description':f"a book about {','.join([f['name'] for f in book_data.get("subject",[])])}"
             }
     return None
 
