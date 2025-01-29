@@ -12,6 +12,8 @@ def get_book_details(isbn):
         data = response.json()
         if data:
             book_data = data.get(f"ISBN:{isbn}", {})
+            description=','.join(
+                    [ff['name'] for ff in book_data.get("subjects",[])])
             return {
                 'cover': book_data.get('cover', {}).get('large', ''),
                 'title': book_data.get('title', ''),
@@ -20,7 +22,7 @@ def get_book_details(isbn):
                 'publish_date': book_data.get('publish_date', ''),
                 'pages': book_data.get('number_of_pages', ''),
                 'isbn': isbn,
-                'description':f"a book about {','.join([f['name'] for f in book_data.get("subjects",[])])}"
+                'description':f" a book about {description}"
             }
     return None
 
