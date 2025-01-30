@@ -5,125 +5,99 @@ import json
 from bs4 import BeautifulSoup
 import requests as r
 import datetime
+from bs4 import BeautifulSoup as BS
 
 
-def get_product():
-    product={
-        "name":"",
-        "brand":"",
-        "description":"",
-        "images":[],
-        "category":"",
-        "manufacturer":"",
-        "ingredients":[],
-        "gtin":"",
-    }
-    return product
-    
-    
-def extract_next_data(html_content):
-    soup = BeautifulSoup(html_content, 'html.parser')
-    next_data = soup.find('script', {'id': '__NEXT_DATA__'})
-    
-    if next_data:
-        json_data = json.loads(next_data.string)
-        return json_data
-    return None
 
-
-def search_openbeauty(barcode):
-    """Retrieve product data from Open Beauty Facts"""
-    url = f"https://world.openbeautyfacts.org/api/v3/product/{barcode}.json"
-    product=get_product()
-    try:
-        response = requests.get(url, timeout=5)
-        return response.json() if response.status_code == 200 else None
-    except requests.RequestException:
-        return product
 
 def get_basic_gtin(barcode):
-    
-    product={}
     try:
-
         url = f"https://barcode-list.com/barcode/EN/barcode-{barcode}/Search.htm"
         response = requests.get(url)
         if response.status_code == 200:
-            # product['name']=response.text.splitlines()[4].split(barcode)[1].split('"')[0]
-            from bs4 import BeautifulSoup as BS
             soup = BS(response.text, 'html.parser')
-            product['name']=soup.find_all('meta')[1]['content'].split("This code meet the following products:")[1]
-    except:
-        product['name']="No name"
-    product['gtin']=barcode
-    return product
-def search_cogita(barcode):
-        
-    product=get_product()
-    try:
-        resp=r.get(f"https://www.qogita.com/products/?query={barcode}")
-
-        n=extract_next_data(resp.content)
-        data=n["props"]["pageProps"]["dehydratedState"]["queries"][2]["state"]["data"]["results"][0]
-        product["brand"]=data["brandName"]
-        product["name"]=data["name"]
-        product["images"].append(data["imageUrl"])
-        product["category"]=data["categoryName"]
-        product["gtin"]=data["gtin"]
-        product["source"]="qogita"
-        product["last_update"]=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            product= {
+                'name':soup.find_all('meta')[1]['content'].split("This code meet the following products:")[1],
+                'gtin':barcode,
+                'source':url
+            }
+            with open("/tmp/accepter/isbn/jsons/basic_{barcode}.json") as j:json.dump(product,j)
+            return product
     except Exception as e:
         print(e)
-    return product
+    return None
+
+
 
 def setup_routes(app):
-    @app.route('/gtin_scanner', methods=['GET'])
-    def gtin_scanner():
-        return render_template('gtin_scanner.html')
-    
-    @app.route('/gtin/<barcode>')
-    def gtin_barcode(barcode):
-        print(search_openbeauty(barcode))
-        product_info = get_basic_gtin(barcode)#search_cogita(barcode)
-
-        # Prettify the JSON for display
-        product_json = json.dumps(product_info, indent=2)
-        return render_template('gtin_result.html', 
+    @app.route('/gtin', methods=['GET']) 
+    @app.route('/gtin/<barcode>', methods=['GET'])
+    def gtin(barcode=None):
+        if barcode:
+            product_info = get_basic_gtin(barcode)#search_cogita(barcode)
+            if product_info:            
+                product_json = json.dumps(product_info, indent=2)
+                return render_template('gtin_result.html', 
                                 product=product_info, 
                                 product_json=product_json)
+        else:
+            return render_template('gtin_scanner.html')
+    
+
+
+
+
+# def get_product():
+#     product={
+#         "name":"",
+#         "brand":"",
+#         "description":"",
+#         "images":[],
+#         "category":"",
+#         "manufacturer":"",
+#         "ingredients":[],
+#         "gtin":"",
+#     }
+#     return product
+    
+    
+# def extract_next_data(html_content):
+#     soup = BeautifulSoup(html_content, 'html.parser')
+#     next_data = soup.find('script', {'id': '__NEXT_DATA__'})
+    
+#     if next_data:
+#         json_data = json.loads(next_data.string)
+#         return json_data
+#     return None
+
 
 # def setup_routes(app):
-#     @app.route('/gtin_scanner', methods=['GET'])
-#     def gtin_scanner():
-#         return render_template('gtin_scanner.html')
-#     @app.route('/gtin/<barcode>')
-#     def gtin_barcode(barcode):
-#             product_info=[]
-#             product_info.append( search_cogita(barcode))
-#             return Response(json.dumps(product_info, indent=2), mimetype='application/json')
-
-
-
-
-
-
-
+#     @app.route('/gtin', methods=['GET']) 
+#     @app.route('/gtin/<barcode>', methods=['GET'])
+#     def gtin_barcode(barcode=None):
+#         if barcode:
+#             product_info = get_basic_gtin(barcode)#search_cogita(barcode)
+#             if product_info:            
+#                 product_json = json.dumps(product_info, indent=2)
+#         return render_template('gtin_result.html', 
+#                                 product=product_info, 
+#                                 product_json=product_json)
+# def search_openbeauty(barcode):
+#     """Retrieve product data from Open Beauty Facts"""
+#     url = f"https://world.openbeautyfacts.org/api/v3/product/{barcode}.json"
+#     product=get_product()
+#     try:
+#         response = requests.get(url, timeout=5)
+#         return response.json() if response.status_code == 200 else None
+#     except requests.RequestException:
+#         return product
 
 # def search_cogita(barcode):
-#     import requests as r
-#     import datetime
-#     product={
-#     "name":"",
-#     "brand":"",
-#     "description":"",
-#     "images":[],
-#     "category":"",
-#     "manufacturer":"",
-#     "ingredients":[],
-#     "gtin":"",
-#     }
+        
+#     product=get_product()
 #     try:
-#         resp=r.get("https://www.qogita.com/products/?query={barcode}")
+#         resp=r.get(f"https://www.qogita.com/products/?query={barcode}")
+
 #         n=extract_next_data(resp.content)
 #         data=n["props"]["pageProps"]["dehydratedState"]["queries"][2]["state"]["data"]["results"][0]
 #         product["brand"]=data["brandName"]
@@ -131,16 +105,205 @@ def setup_routes(app):
 #         product["images"].append(data["imageUrl"])
 #         product["category"]=data["categoryName"]
 #         product["gtin"]=data["gtin"]
-#         product["source"]="Cogita"
-#         product["last_update"]=datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-#         return product
+#         product["source"]="qogita"
+#         product["last_update"]=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 #     except Exception as e:
 #         print(e)
+#     return product
+
+# def setup_routes(app):
+#     @app.route('/gtin', methods=['GET']) 
+#     @app.route('/gtin/<barcode>', methods=['GET'])
+#     def gtin_barcode(barcode=None):
+#         if barcode:
+#             product_info = get_basic_gtin(barcode)#search_cogita(barcode)
+#             if product_info:            
+#                 product_json = json.dumps(product_info, indent=2)
+#         return render_template('gtin_result.html', 
+#                                 product=product_info, 
+#                                 product_json=product_json)
+#         return render_template('gtin_scanner.html')
+#  def gtin_scanner():
+        
+# # def setup_routes(app):
+# #     @app.route('/gtin_scanner', methods=['GET'])
+# #     def gtin_scanner():
+# #         return render_template('gtin_scanner.html')
+# #     @app.route('/gtin/<barcode>')
+# #     def gtin_barcode(barcode):
+# #             product_info=[]
+# #             product_info.append( search_cogita(barcode))
+# #             return Response(json.dumps(product_info, indent=2), mimetype='application/json')
+
+
+
+
+
+
+
+
+# # def search_cogita(barcode):
+# #     import requests as r
+# #     import datetime
+# #     product={
+# #     "name":"",
+# #     "brand":"",
+# #     "description":"",
+# #     "images":[],
+# #     "category":"",
+# #     "manufacturer":"",
+# #     "ingredients":[],
+# #     "gtin":"",
+# #     }
+# #     try:
+
+
+
+# def get_product():
+#     product={
+#         "name":"",
+#         "brand":"",
+#         "description":"",
+#         "images":[],
+#         "category":"",
+#         "manufacturer":"",
+#         "ingredients":[],
+#         "gtin":"",
+#     }
+#     return product
+    
+    
+# def extract_next_data(html_content):
+#     soup = BeautifulSoup(html_content, 'html.parser')
+#     next_data = soup.find('script', {'id': '__NEXT_DATA__'})
+    
+#     if next_data:
+#         json_data = json.loads(next_data.string)
+#         return json_data
+#     return None
+
+
+# def setup_routes(app):
+#     @app.route('/gtin', methods=['GET']) 
+#     @app.route('/gtin/<barcode>', methods=['GET'])
+#     def gtin_barcode(barcode=None):
+#         if barcode:
+#             product_info = get_basic_gtin(barcode)#search_cogita(barcode)
+#             if product_info:            
+#                 product_json = json.dumps(product_info, indent=2)
+#         return render_template('gtin_result.html', 
+#                                 product=product_info, 
+#                                 product_json=product_json)
+# def search_openbeauty(barcode):
+#     """Retrieve product data from Open Beauty Facts"""
+#     url = f"https://world.openbeautyfacts.org/api/v3/product/{barcode}.json"
+#     product=get_product()
+#     try:
+#         response = requests.get(url, timeout=5)
+#         return response.json() if response.status_code == 200 else None
+#     except requests.RequestException:
 #         return product
 
-# def save_scan_history(product_info):
-#     """Save product scan to history file"""
-#     history_file = 'scan_history.json'
+# def search_cogita(barcode):
+        
+#     product=get_product()
+#     try:
+#         resp=r.get(f"https://www.qogita.com/products/?query={barcode}")
+
+#         n=extract_next_data(resp.content)
+#         data=n["props"]["pageProps"]["dehydratedState"]["queries"][2]["state"]["data"]["results"][0]
+#         product["brand"]=data["brandName"]
+#         product["name"]=data["name"]
+#         product["images"].append(data["imageUrl"])
+#         product["category"]=data["categoryName"]
+#         product["gtin"]=data["gtin"]
+#         product["source"]="qogita"
+#         product["last_update"]=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+#     except Exception as e:
+#         print(e)
+#     return product
+
+# def setup_routes(app):
+#     @app.route('/gtin', methods=['GET']) 
+#     @app.route('/gtin/<barcode>', methods=['GET'])
+#     def gtin_barcode(barcode=None):
+#         if barcode:
+#             product_info = get_basic_gtin(barcode)#search_cogita(barcode)
+#             if product_info:            
+#                 product_json = json.dumps(product_info, indent=2)
+#         return render_template('gtin_result.html', 
+#                                 product=product_info, 
+#                                 product_json=product_json)
+#         return render_template('gtin_scanner.html')
+#  def gtin_scanner():
+        
+# # def setup_routes(app):
+# #     @app.route('/gtin_scanner', methods=['GET'])
+# #     def gtin_scanner():
+# #         return render_template('gtin_scanner.html')
+# #     @app.route('/gtin/<barcode>')
+# #     def gtin_barcode(barcode):
+# #             product_info=[]
+# #             product_info.append( search_cogita(barcode))
+# #             return Response(json.dumps(product_info, indent=2), mimetype='application/json')
+
+
+
+
+
+
+
+
+# # def search_cogita(barcode):
+# #     import requests as r
+# #     import datetime
+# #     product={
+# #     "name":"",
+# #     "brand":"",
+# #     "description":"",
+# #     "images":[],
+# #     "category":"",
+# #     "manufacturer":"",
+# #     "ingredients":[],
+# #     "gtin":"",
+# #     }
+# #     try:
+# #         resp=r.get("https://www.qogita.com/products/?query={barcode}")
+# #         n=extract_next_data(resp.content)
+# #         data=n["props"]["pageProps"]["dehydratedState"]["queries"][2]["state"]["data"]["results"][0]
+# #         product["brand"]=data["brandName"]
+# #         product["name"]=data["name"]
+# #         product["images"].append(data["imageUrl"])
+# #         product["category"]=data["categoryName"]
+# #         product["gtin"]=data["gtin"]
+# #         product["source"]="Cogita"
+# #         product["last_update"]=datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+# #         return product
+# #     except Exception as e:
+# #         print(e)
+# #         return product
+
+# # def save_scan_history(product_info):
+# #     """Save product scan to history file"""
+# #     history_file = 'scan_history.json'
+# #         resp=r.get("https://www.qogita.com/products/?query={barcode}")
+# #         n=extract_next_data(resp.content)
+# #         data=n["props"]["pageProps"]["dehydratedState"]["queries"][2]["state"]["data"]["results"][0]
+# #         product["brand"]=data["brandName"]
+# #         product["name"]=data["name"]
+# #         product["images"].append(data["imageUrl"])
+# #         product["category"]=data["categoryName"]
+# #         product["gtin"]=data["gtin"]
+# #         product["source"]="Cogita"
+# #         product["last_update"]=datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+# #         return product
+# #     except Exception as e:
+# #         print(e)
+# #         return product
+
+# # def save_scan_history(product_info):
+# #     """Save product scan to history file"""
+# #     history_file = 'scan_history.json'
 #     try:
 #         with open(history_file, 'a') as f:
 #             json.dump(product_info, f)
