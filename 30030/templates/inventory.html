@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventory</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Current Inventory</h1>
+    <table>
+        <tr>
+            <th>GTIN</th>
+            <th>Product Name</th>
+            <th>Count</th>
+            <th>Last Scanned</th>
+        </tr>
+        {% for gtin, product in products.items() %}
+        <tr>
+            <td>{{ product.gtin }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.count }}</td>
+            <td>{{ product.timestamp if product.timestamp else 'N/A' }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
