@@ -1,9 +1,6 @@
 import requests
 from flask import render_template
-from googletrans import Translator
-from zto4.lang.lib import add_farsi_translations
 import json
-import pandas as pd
 def clean_isbn(text):
     return ''.join(c for c in text if c.isdigit() or c.upper() == 'X')
 
