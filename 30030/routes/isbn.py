@@ -13,7 +13,7 @@ def get_book_details(isbn):
         data = response.json()
        
         if data:
-            with open(f"/tmp/accepter/isbn/jsons/{isbn}.json") as j:
+            with open(f"/tmp/accepter/isbn/jsons/{isbn}.json","w") as j:
                 json.dumps(j)
             book_data = data.get(f"ISBN:{isbn}", {})
             description=','.join(

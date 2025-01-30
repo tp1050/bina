@@ -22,7 +22,7 @@ def get_basic_gtin(barcode):
                 'source':url,
                 'timestamp':datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             }
-            with open("/tmp/accepter/gtins/jsons/basic_{barcode}.json") as j:json.dump(product,j)
+            with open("/tmp/accepter/gtins/jsons/basic_{barcode}.json","w") as j:json.dump(product,j)
             return product
     except Exception as e:
         print(e)
