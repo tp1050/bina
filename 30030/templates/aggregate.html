@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GTIN Aggregation</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        th, td { border: 1px solid black; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .refresh-btn { padding: 10px 20px; margin: 10px 0; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>GTIN Scan Counts</h1>
+    <form method="POST">
+        <button type="submit" class="refresh-btn">Refresh Aggregation</button>
+    </form>
+    <table>
+        <tr>
+            <th>GTIN</th>
+            <th>Count</th>
+        </tr>
+        {% for product in products %}
+        <tr>
+            <td>{{ product['GTIN'] }}</td>
+            <td>{{ product['Count'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

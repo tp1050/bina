@@ -41,8 +41,8 @@ def setup_routes(app):
                 return render_template('gtin_result.html', 
                                 product=product_info, 
                                 product_json=product_json)
-        else:
-            return render_template('gtin_scanner.html')
+        
+        return render_template('gtin_scanner.html')
     
 
 
