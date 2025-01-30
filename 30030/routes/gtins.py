@@ -19,7 +19,8 @@ def get_basic_gtin(barcode):
             product= {
                 'name':soup.find_all('meta')[1]['content'].split("This code meet the following products:")[1],
                 'gtin':barcode,
-                'source':url
+                'source':url,
+                'timestamp':datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             }
             with open("/tmp/accepter/gtins/jsons/basic_{barcode}.json") as j:json.dump(product,j)
             return product
