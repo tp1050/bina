@@ -14,7 +14,7 @@ def get_book_details(isbn):
        
         if data:
             with open(f"/tmp/accepter/isbn/jsons/{isbn}.json","w") as j:
-                json.dumps(j)
+                json.dump(data,j)
             book_data = data.get(f"ISBN:{isbn}", {})
             description=','.join(
                     [ff['name'] for ff in book_data.get("subjects",[])])
