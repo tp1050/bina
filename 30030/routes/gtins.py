@@ -1,5 +1,6 @@
 import os
 from collections import defaultdict
+import time
 
 class InventoryManager:
     def __init__(self, base_path="/tmp/accepter/gtins"):
@@ -44,7 +45,12 @@ import os
 def get_basic_gtin(barcode, inventory_manager):
     # First check if we already have this product cached
     cache_file = os.path.join(inventory_manager.json_path, f"basic_{barcode}.json")
-    
+    product={
+                'name':barcode,
+                'gtin':barcode,
+                'source': url,
+                'timestampe':datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            }
     if os.path.exists(cache_file):
         with open(cache_file, 'r') as f:
             product = json.load(f)
@@ -52,7 +58,12 @@ def get_basic_gtin(barcode, inventory_manager):
         try:
             url = f"https://barcode-list.com/barcode/EN/barcode-{barcode}/Search.htm"
             response = requests.get(url)
-            
+            product={
+                'name':barcode,
+                'gtin':barcode,
+                'source': url,
+                'timestampe':datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            }
             if response.status_code == 200:
                 soup = BS(response.text, 'html.parser')
                 product = {
@@ -62,14 +73,17 @@ def get_basic_gtin(barcode, inventory_manager):
                     'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
                 }
                 
-                with open(cache_file, "w") as j:
-                    json.dump(product, j)
+                
             else:
-                return None
+                print(f"Failed to retrieve data for barcode {barcode}")
+                
+            with open(cache_file, "w") as j:
+                    json.dump(product, j)
+                
                 
         except Exception as e:
             print(e)
-            return None
+        return product
     
     # Increment the inventory count
     inventory_manager.increment_count(barcode)
