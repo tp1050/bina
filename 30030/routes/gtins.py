@@ -45,6 +45,7 @@ import os
 def get_basic_gtin(barcode, inventory_manager):
     # First check if we already have this product cached
     cache_file = os.path.join(inventory_manager.json_path, f"basic_{barcode}.json")
+    url = f"https://barcode-list.com/barcode/EN/barcode-{barcode}/Search.htm"
     product={
                 'name':barcode,
                 'gtin':barcode,
@@ -56,7 +57,7 @@ def get_basic_gtin(barcode, inventory_manager):
             product = json.load(f)
     else:
         try:
-            url = f"https://barcode-list.com/barcode/EN/barcode-{barcode}/Search.htm"
+            
             response = requests.get(url)
             product={
                 'name':barcode,
