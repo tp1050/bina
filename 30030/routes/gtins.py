@@ -59,12 +59,6 @@ def get_basic_gtin(barcode, inventory_manager):
         try:
             
             response = requests.get(url)
-            product={
-                'name':barcode,
-                'gtin':barcode,
-                'source': url,
-                'timestampe':datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            }
             if response.status_code == 200:
                 soup = BS(response.text, 'html.parser')
                 product = {
@@ -84,7 +78,7 @@ def get_basic_gtin(barcode, inventory_manager):
                 
         except Exception as e:
             print(e)
-        return product
+        
     
     # Increment the inventory count
     inventory_manager.increment_count(barcode)
