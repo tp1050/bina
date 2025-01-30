@@ -21,7 +21,7 @@ def get_basic_gtin(barcode):
                 'gtin':barcode,
                 'source':url
             }
-            with open("/tmp/accepter/isbn/jsons/basic_{barcode}.json") as j:json.dump(product,j)
+            with open("/tmp/accepter/gtins/jsons/basic_{barcode}.json") as j:json.dump(product,j)
             return product
     except Exception as e:
         print(e)
