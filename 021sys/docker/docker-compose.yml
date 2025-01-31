@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  inventory-db:
+    build:
+      context: .
+      dockerfile: Dockerfile.mysql
+    container_name: inventory-db
+    ports:
+      - "3306:3306"
+    volumes:
+      - inventory-data:/var/lib/mysql
+    networks:
+      - scoobydoo
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpass
+      - MYSQL_DATABASE=inventory_db
+      - MYSQL_USER=invuser
+      - MYSQL_PASSWORD=invpass
+
+volumes:
+  inventory-data:
+
+networks:
+  scoobydoo:
+    external: true

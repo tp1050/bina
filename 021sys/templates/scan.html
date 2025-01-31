@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Scan Barcode</h2>
+<form method="POST">
+    <input type="text" name="barcode" id="barcode" autofocus>
+    <button type="submit">Look Up</button>
+</form>
+<div id="scanner"></div>
+<script src="{{ url_for('static', filename='scanner.js') }}"></script>
+{% endblock %}

@@ -42,6 +42,54 @@ import json
 from bs4 import BeautifulSoup as BS
 import os
 
+
+
+def fetch_and_parse_to_json(url,barcode): 
+    import time
+    driver=WDF.create_driver()
+    driver.get(url)
+    time.sleep(2)
+    text=driver.page_source
+    # response = requests.get(url)
+    soup = BS(text, 'html.parser')
+    driver.quit()
+    meta_data={}
+    for meta in soup.find_all('meta'):
+        if meta.get('name') and meta.get('content'):
+            meta_data[meta['name']] = meta['content']
+    item_props=meta_data
+    for element in soup.find_all(attrs={'itemprop': True}):
+        prop_name = element['itemprop']
+        # Try different ways to get the content
+        content = None
+        if element.get('content'):
+            content = element['content']
+        elif element.get('src'):
+            content = element['src']
+        elif element.string:
+            content = element.string.strip()
+            
+        # Add to dictionary, handling multiple values for same prop
+        if prop_name in item_props:
+            if isinstance(item_props[prop_name], list):
+                item_props[prop_name].append(content)
+            else:
+                item_props[prop_name] = [item_props[prop_name], content]
+        else:
+            item_props[prop_name] = content
+    item_props['gtin']=barcode
+    # Also get all metadata
+    item_props['source']=url
+    item_props['timestamp']=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    # inventory_manager.increment_count(barcode)
+    # item_props['count'] = inventory_manager.get_product_count(barcode)
+    with open(f"/tmp/accepter/gtins/jsons/{urlparse(url).netloc}_{barcode}.json", 'w') as f:
+        import json
+        json.dump(item_props, f)        
+    return  item_props
+
+
+    
 def get_basic_gtin(barcode, inventory_manager):
     # First check if we already have this product cached
     cache_file = os.path.join(inventory_manager.json_path, f"basic_{barcode}.json")
@@ -118,6 +166,11 @@ def setup_routes(app):
                 products[gtin] = {'gtin': gtin, 'count': count, 'name': 'Unknown Product'}
                 
         return render_template('inventory.html', products=products)
+
+
+
+
+
 
 # import requests
 # from flask import Response, render_template, jsonify, request, redirect, url_for

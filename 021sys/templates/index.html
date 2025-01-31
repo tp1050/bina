@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Welcome to Inventory System</h1>
+<div class="actions">
+    <a href="{{ url_for('scan') }}" class="button">Scan Barcode</a>
+    <a href="{{ url_for('quotes') }}" class="button">View Quotes</a>
+    <a href="{{ url_for('inventories') }}" class="button">View Inventories</a>
+    <a href="{{ url_for('invoices') }}" class="button">View Invoices</a>
+</div>
+{% endblock %}
