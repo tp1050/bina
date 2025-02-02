@@ -1,5 +1,4 @@
 from flask import Flask, jsonify, render_template,  redirect
-from sympy import product
 from zto4.extraction.barcode import get_product_by_barcode
 import json
 app = Flask(__name__)
