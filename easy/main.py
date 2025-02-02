@@ -32,7 +32,7 @@ def gtin(barcode=None):
         
         if product_info:            
             return render_template('product_view.html', data=product_info)
-    return render_template('scanner.html')
+    return render_template('scanner2.html')
 
 
 

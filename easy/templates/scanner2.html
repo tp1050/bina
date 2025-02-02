@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Barcode Scanner</title>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body>
+    <div id="reader"></div>
+    <div id="status"></div>
+    <div class="controls">
+        <button onclick="switchCamera()">Switch Camera</button>
+        <button onclick="toggleFlash()">Toggle Flash</button>
+    </div>
+    <script src="{{ url_for('static', filename='js/scanner.js') }}"></script>
+</body>
+</html>
