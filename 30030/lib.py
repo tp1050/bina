@@ -4,6 +4,33 @@ import json
 from bs4 import BeautifulSoup
 import requests as r
 import datetime
+
+
+def extract_prestashop_json(js_content):
+    """Extract prestashop JSON data from JavaScript content"""
+    # Find the prestashop variable declaration
+    start_marker = "var prestashop = "
+    end_marker = ";"
+    
+    # Extract the JSON string
+    start_index = js_content.find(start_marker) + len(start_marker)
+    end_index = js_content.find(end_marker, start_index)
+    json_str = js_content[start_index:end_index]
+    
+    # Parse the JSON data
+    data = json.loads(json_str)
+    
+    # Extract relevant product information
+    product_info = {
+        'name': data['page']['meta']['title'],
+        'description': data['page']['meta']['description'],
+        'url': data['urls']['current_url'],
+        'category': [item['title'] for item in data['breadcrumb']['links']],
+      
+    }
+    
+    return product_info
+
 product={
     "name":"",
     "brand":"",
