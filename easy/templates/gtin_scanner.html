@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GTIN_SCANNER</title>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        #reader {
+            width: 100%;
+            max-width: 640px;
+            margin: 0 auto;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .start-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background: #FF69B4;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        #status {
+            margin-top: 15px;
+            color: #666;
+            font-size: 16px;
+        }
+        .nav-links {
+            margin: 20px 0;
+        }
+        .nav-links a {
+            color: #FF69B4;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>gtin Scanner</h1>
+        <div class="nav-links">
+            <a href="/beauty/history">View Scan History</a>
+        </div>
+        <button class="start-button" onclick="startScanner()">Start Scanner</button>
+        <div id="reader"></div>
+        <div id="status"></div>
+    </div>
+
+    <script>
+        let html5QrCode;
+
+        function startScanner() {
+            if (html5QrCode) {
+                html5QrCode.stop();
+            }
+            
+            html5QrCode = new Html5Qrcode("reader");
+            const config = { 
+                fps: 10, 
+                qrbox: { width: 250, height: 100 } 
+            };
+
+            html5QrCode.start(
+                { facingMode: "environment" },
+                config,
+                onScanSuccess,
+                onScanError
+            ).catch(err => {
+                document.getElementById('status').textContent = 'Camera Error: ' + err;
+            });
+        }
+
+        function onScanSuccess(decodedText, decodedResult) {
+            html5QrCode.stop().then(() => {
+                window.location.href = `/gtin/${encodeURIComponent(decodedText)}`;
+            });
+        }
+
+        function onScanError(error) {
+            console.log(error);
+        }
+    </script>
+</body>
+</html>

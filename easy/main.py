@@ -1,6 +1,6 @@
-from flask import Flask, render_template,  redirect
-from zto4.extraction import ext_jsonld_product as e1
-from zto4.extraction import ext_presta_product as e2
+from flask import Flask, jsonify, render_template,  redirect
+from sympy import product
+from zto4.extraction.barcode import get_product_by_barcode
 import json
 app = Flask(__name__)
 
@@ -23,15 +23,14 @@ def indexer():
 @app.route('/gtin/<barcode>', methods=['GET'])
 def gtin(barcode=None):
     if barcode:
-        product_info = get_product_info(barcode, inventory_manager)
+        product_info=get_product_by_barcode(barcode)
         if product_info:            
-            product_json = json.dumps(product_info, indent=2)
-            return render_template('gtin_result.html', 
-                                product=product_info, 
-                                product_json=product_json)
+            return render_template('table_view.html', data=product_info)
+            # return render_template('gtin_result.html', 
+            #                     product=product_info, 
+            #                     product_json=product_json)
     
     return render_template('gtin_scanner.html')
 
 
-app.run(debug=True,port="49090")
-
+app.run(debug=True,port="64533")

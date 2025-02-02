@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSON Viewer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/9.9.2/jsoneditor.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/9.9.2/jsoneditor.min.js"></script>
+    <style>
+        #jsoneditor {
+            width: 100%;
+            height: 600px;
+        }
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>JSON Data Viewer</h1>
+        <div id="jsoneditor"></div>
+    </div>
+
+    <script>
+        const container = document.getElementById('jsoneditor');
+        const options = {
+            mode: 'tree',
+            modes: ['tree', 'view', 'form', 'code', 'text'],
+            onError: function(err) {
+                alert(err.toString());
+            },
+            onModeChange: function(newMode, oldMode) {
+                console.log('Mode changed from', oldMode, 'to', newMode);
+            }
+        };
+        
+        const editor = new JSONEditor(container, options);
+        const initialJson = {{ json_data|tojson }};
+        editor.set(initialJson);
+    </script>
+</body>
+</html>
