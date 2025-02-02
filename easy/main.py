@@ -29,7 +29,13 @@ class GTINLookup:
             low_memory=False,
             dtype=str
         )
+        
+        # Keep the first occurrence of each code
+        df = df.drop_duplicates(subset=['code'], keep='first')
+        
+        # Now create the index-based dictionary
         self.products = df.set_index('code').to_dict('index')
+
     
     @lru_cache(maxsize=1000)
     def lookup(self, gtin):
