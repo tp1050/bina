@@ -1,6 +1,8 @@
 from flask import Flask, jsonify, render_template,  redirect
-from zto4.extraction.barcode import get_product_by_barcode
+from zto4.extraction.barcode import get_product_by_barcode,GTINLookup
 import json
+
+gtin_lookup = GTINLookup('data.csv')
 app = Flask(__name__)
 
 
@@ -22,14 +24,14 @@ def indexer():
 @app.route('/gtin/<barcode>', methods=['GET'])
 def gtin(barcode=None):
     if barcode:
-        product_info=get_product_by_barcode(barcode)
+        with open('/tmp/accepter/gtin/gtin.log', 'a+') as f:f.write(f'{barcode}\n')
+
+        product_info = [gtin_lookup.lookup(barcode)    ,get_product_by_barcode(barcode)]
+        
         if product_info:            
             return render_template('table_view.html', data=product_info)
-            # return render_template('gtin_result.html', 
-            #                     product=product_info, 
-            #                     product_json=product_json)
-    
-    return render_template('scanner.html')
+        return render_template('scanner.html')
+
 
 
 app.run(debug=True,port="64533",host="0.0.0.0")
