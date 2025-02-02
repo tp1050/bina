@@ -32,4 +32,4 @@ def gtin(barcode=None):
     return render_template('gtin_scanner.html')
 
 
-app.run(debug=True,port="64533")
+app.run(debug=True,port="64533",host="0.0.0.0")
