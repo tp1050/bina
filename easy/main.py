@@ -29,7 +29,7 @@ def gtin(barcode=None):
             #                     product=product_info, 
             #                     product_json=product_json)
     
-    return render_template('gtin_scanner.html')
+    return render_template('scanner.html')
 
 
 app.run(debug=True,port="64533",host="0.0.0.0")

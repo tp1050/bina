@@ -1,0 +1,60 @@
+let html5QrCode;
+let currentCamera = 'environment';
+let isFlashOn = false;
+
+async function startScanner() {
+    if (html5QrCode) {
+        await html5QrCode.stop();
+    }
+    
+    html5QrCode = new Html5Qrcode("reader");
+    const config = { 
+        fps: 30,
+        qrbox: { width: 300, height: 150 },
+        aspectRatio: 1.0,
+        formatsToSupport: [ Html5QrcodeSupportedFormats.EAN_13 ]
+    };
+
+    html5QrCode.start(
+        { 
+            facingMode: currentCamera,
+            deviceId: { exact: null }
+        },
+        config,
+        onScanSuccess,
+        onScanError
+    ).catch(err => {
+        document.getElementById('status').textContent = 'Camera Status: ' + err;
+        console.log('Camera details:', err);
+    });
+}
+
+async function toggleFlash() {
+    if (html5QrCode) {
+        isFlashOn = !isFlashOn;
+        await html5QrCode.applyVideoConstraints({
+            advanced: [{torch: isFlashOn}]
+        });
+        document.getElementById('status').textContent = `Flash: ${isFlashOn ? 'ON' : 'OFF'}`;
+    }
+}
+
+async function switchCamera() {
+    if (html5QrCode) {
+        await html5QrCode.stop();
+        currentCamera = currentCamera === 'environment' ? 'user' : 'environment';
+        startScanner();
+        document.getElementById('status').textContent = `Camera: ${currentCamera}`;
+    }
+}
+
+function onScanSuccess(decodedText, decodedResult) {
+    console.log('Scan successful:', decodedText);
+    html5QrCode.stop().then(() => {
+        window.location.href = `/gtin/${encodeURIComponent(decodedText)}`;
+    });
+}
+
+function onScanError(error) {
+    console.log('Scan error:', error);
+}
