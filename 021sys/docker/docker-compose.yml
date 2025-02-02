@@ -1,26 +1,19 @@
 version: '3.8'
-
 services:
-  inventory-db:
-    build:
-      context: .
-      dockerfile: Dockerfile.mysql
-    container_name: inventory-db
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass123
+      MYSQL_DATABASE: beauty_db
+      MYSQL_USER: beauty_user
+      MYSQL_PASSWORD: beauty123
     ports:
       - "3306:3306"
     volumes:
-      - inventory-data:/var/lib/mysql
-    networks:
-      - scoobydoo
-    environment:
-      - MYSQL_ROOT_PASSWORD=rootpass
-      - MYSQL_DATABASE=inventory_db
-      - MYSQL_USER=invuser
-      - MYSQL_PASSWORD=invpass
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
-  inventory-data:
-
-networks:
-  scoobydoo:
-    external: true
+  mysql_data:
