@@ -29,7 +29,7 @@ def gtin(barcode=None):
         product_info = [gtin_lookup.lookup(barcode)    ,get_product_by_barcode(barcode)]
         
         if product_info:            
-            return render_template('table_view.html', data=product_info)
+            return render_template('product_view.html', data=product_info)
         return render_template('scanner.html')
 
 
