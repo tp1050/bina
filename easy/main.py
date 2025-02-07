@@ -44,7 +44,7 @@ def indexer():
 def add_to_inventory():
     inventory_name = request.form.get('inventory')
     barcode = request.form.get('barcode')
-    
+    print(inventory_name, barcode)
     if inventory_name and barcode:
         filename = f'/tmp/accepter/gtins/invet_{inventory_name}.inventory'
         with open(filename, 'a+') as f:
