@@ -18,7 +18,7 @@ def google_gtin_logs(n=4):
             )
     links=[]
     for g in gtins:
-        links.extend(google_barcode_serperdev(barcode=g))
+        links.extend(google_barcode_serperdev(barcode=g)or [])
     htmls=[]
     counter=0
     for l in links:
