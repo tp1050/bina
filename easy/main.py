@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, render_template,  redirect,request
-from zto4.extraction.barcode import  get_product_by_barcode
+from zto4.extraction.barcode2 import  get_product_by_barcode
 import json
 import pandas as pd
 from functools import lru_cache
