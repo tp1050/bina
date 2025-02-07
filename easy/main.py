@@ -64,7 +64,7 @@ def gtin(barcode=None):
         product_info = get_product_by_barcode(barcode)
         
         if product_info:            
-            return render_template('product_view2.html', data=product_info)
+            return render_template('product_view2.html', data=product_info,barcode=barcode)
     return render_template('scanner3.html')
 
 

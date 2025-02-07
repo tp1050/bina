@@ -14,7 +14,7 @@
 <body>
     <div class="inventory-form">
         <form action="/add_to_inventory" method="POST">
-            <input type="hidden" name="barcode" value="{{ data[0].get('sku', '') }}">
+            <input type="hidden" name="barcode" value="{{ barcode }}">
             <label for="inventory">Select Inventory:</label>
             <select name="inventory" id="inventory" required>
                 <option value="warehouse">Warehouse</option>
