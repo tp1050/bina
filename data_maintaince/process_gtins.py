@@ -16,6 +16,7 @@ def google_gtin_logs(n=20):
             list(set(P(gtin_log_path).read_text().split('\n'))
                  )
             )
+    print(gtins)
     links=[]
     counter=0
     for g in gtins:
