@@ -10,7 +10,7 @@ from datetime import datetime
 gtin_log_path='/tmp/accepter/gtin/gtin.log'
 
 
-def google_gtin_logs(n=20):
+def google_gtin_logs(n=2000):
 
     gtins=sorted(
             list(set(P(gtin_log_path).read_text().split('\n'))
@@ -31,6 +31,7 @@ def google_gtin_logs(n=20):
         SAVE(obj=html,where=f"/home/c/.zto/assets/bina/sku/gserp_fetch/{DOMAIN(l)}_{g}.html")
         htmls.append(html)
         if counter>n:break
+    return htmls
 google_gtin_logs()
     
     
