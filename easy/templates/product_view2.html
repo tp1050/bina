@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Data</title>
+    <style>
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px; text-align: left; border: 1px solid #ddd; }
+        th { background-color: #4CAF50; color: white; }
+        img { max-width: 200px; height: auto; margin: 5px; }
+        .image-gallery { display: flex; flex-wrap: wrap; gap: 10px; }
+        .inventory-form { margin: 20px; padding: 20px; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <div class="inventory-form">
+        <form action="/add_to_inventory" method="POST">
+            <input type="hidden" name="barcode" value="{{ data[0].get('barcode', '') }}">
+            <label for="inventory">Select Inventory:</label>
+            <select name="inventory" id="inventory" required>
+                <option value="warehouse">Warehouse</option>
+                <option value="store">Store</option>
+                <option value="shipping">Shipping</option>
+                <option value="returns">Returns</option>
+            </select>
+            <input type="submit" value="Add to Inventory">
+        </form>
+    </div>
+
+    <div class="container">
+        <!-- Rest of the existing template code remains the same -->
+        {% if data %}
+            {% for item in data %}
+                <!-- Existing table code -->
+            {% endfor %}
+        {% else %}
+            <p>No data available</p>
+        {% endif %}
+    </div>
+</body>
+</html>

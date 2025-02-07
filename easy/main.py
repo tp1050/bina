@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template,  redirect
+from flask import Flask, jsonify, render_template,  redirect,request
 from zto4.extraction.barcode import  get_product_by_barcode
 import json
 import pandas as pd
@@ -9,7 +9,6 @@ app = Flask(__name__)
 
 
 @app.route('/')
-
 def indexer():
     paths = []
     for route in app.url_map.iter_rules():
@@ -20,7 +19,19 @@ def indexer():
     return render_template('indexer.html', paths=paths)
 
 
-
+@app.route('/add_to_inventory', methods=['POST'])
+def add_to_inventory():
+    inventory_name = request.form.get('inventory')
+    barcode = request.form.get('barcode')
+    
+    if inventory_name and barcode:
+        filename = f'/tmp/invet_{inventory_name}.inventory'
+        with open(filename, 'a+') as f:
+            f.write(f'{barcode}\n')
+        
+        return redirect(f'/gtin/{barcode}')
+    
+    return redirect('/')
 
 @app.route('/gtin', methods=['GET']) 
 @app.route('/gtin/<barcode>', methods=['GET'])
