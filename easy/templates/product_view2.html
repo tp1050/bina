@@ -25,12 +25,41 @@
             <input type="submit" value="Add to Inventory">
         </form>
     </div>
-
     <div class="container">
-        <!-- Rest of the existing template code remains the same -->
         {% if data %}
             {% for item in data %}
-                <!-- Existing table code -->
+                {% if item %}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for key, value in item.items() %}
+                                <tr>
+                                    <td>{{ key }}</td>
+                                    <td>
+                                        {% if value is string and (value.endswith('.jpg') or value.endswith('.png') or value.endswith('.gif') or value.startswith('http') and ('image' in value or 'img' in value)) %}
+                                            <img src="{{ value }}" alt="{{ key }}">
+                                        {% elif value is iterable and value is not string %}
+                                            <div class="image-gallery">
+                                                {% for img in value %}
+                                                    {% if img is string and (img.endswith('.jpg') or img.endswith('.png') or img.endswith('.gif') or img.startswith('http') and ('image' in img or 'img' in img)) %}
+                                                        <img src="{{ img }}" alt="{{ key }}">
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            {{ value }}
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
             {% endfor %}
         {% else %}
             <p>No data available</p>
