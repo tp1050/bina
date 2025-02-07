@@ -25,7 +25,7 @@ def add_to_inventory():
     barcode = request.form.get('barcode')
     
     if inventory_name and barcode:
-        filename = f'/tmp/invet_{inventory_name}.inventory'
+        filename = f'/tmp/accepter/gtins/invet_{inventory_name}.inventory'
         with open(filename, 'a+') as f:
             f.write(f'{barcode}\n')
         
