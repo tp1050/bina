@@ -27,7 +27,7 @@ def google_gtin_logs(n=2):
     for l in links:
         counter=counter+1
         html=fetch(l,return_type="source")
-        SAVE(obj=html,where=f'/home/c/.zto/assets/bina/sku/gserp_fetch/{DOMAIN(l)}_{g}_{datetime.now().ctime()}.html')
+        SAVE(obj=html,where=f"/home/c/.zto/assets/bina/sku/gserp_fetch/{DOMAIN(l)}_{g}.html")
         htmls.append(html)
         if counter>n:break
 google_gtin_logs()
