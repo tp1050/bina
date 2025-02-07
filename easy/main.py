@@ -7,6 +7,27 @@ from datetime import datetime
 
 app = Flask(__name__)
 
+@app.route('/inventories', methods=['GET'])
+def view_inventories():
+    import glob
+    import os
+    from collections import Counter
+    
+    # Get all inventory files
+    inventory_files = glob.glob('/tmp/accepter/gtins/invet_*.inventory')
+    
+    inventories = {}
+    for inv_file in inventory_files:
+        inventory_name = os.path.basename(inv_file).replace('invet_', '').replace('.inventory', '')
+        
+        with open(inv_file, 'r') as f:
+            barcodes = f.read().splitlines()
+            # Count unique barcodes
+            barcode_counts = Counter(barcodes)
+            
+        inventories[inventory_name] = dict(barcode_counts)
+    
+    return render_template('inventories.html', inventories=inventories)
 
 @app.route('/')
 def indexer():

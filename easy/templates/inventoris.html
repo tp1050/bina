@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventory Overview</title>
+</head>
+<body>
+    <h1>Inventories</h1>
+    {% for inventory_name, barcodes in inventories.items() %}
+        <h2>{{ inventory_name }}</h2>
+        <ul>
+        {% for barcode, count in barcodes.items() %}
+            <li>
+                <a href="/gtin/{{ barcode }}">{{ barcode }}</a>: {{ count }} items
+            </li>
+        {% endfor %}
+        </ul>
+    {% endfor %}
+    
+    <hr>
+    <a href="/">Back to Home</a>
+</body>
+</html>
