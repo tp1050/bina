@@ -1,4 +1,4 @@
-cd  /opt/accepter/venv/site-packages/zto4
+cd  /opt/accepter/venv/lib/python3.10/site-packages/zto4
 gh repo sync
 cd ~/code/bina
 gh repo sync
