@@ -9,7 +9,7 @@ from datetime import datetime
 gtin_log_path='/tmp/accepter/gtin/gtin.log'
 
 
-def google_gtin_logs():
+def google_gtin_logs(n=4):
 
     gtins=sorted(
             list(set(P(gtin_log_path).read_text().split('\n'))
