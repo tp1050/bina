@@ -49,6 +49,7 @@ def add_to_inventory():
         filename = f'/tmp/accepter/gtins/invet_{inventory_name}.inventory'
         with open(filename, 'a+') as f:
             f.write(f'{barcode}\n')
+            print('i did i')
         
         return redirect(f'/gtin/{barcode}')
     
