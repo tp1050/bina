@@ -17,8 +17,11 @@ def google_gtin_logs(n=4):
                  )
             )
     links=[]
+    counter=0
     for g in gtins:
+        counter=counter+1
         links.extend(google_barcode_serperdev(barcode=g)or [])
+        if counter>n:break
     htmls=[]
     counter=0
     for l in links:
