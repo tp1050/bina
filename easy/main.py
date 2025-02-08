@@ -1,9 +1,6 @@
 from flask import Flask, jsonify, render_template,  redirect,request
 from zto4.extraction.barcode2 import  get_product_by_barcode
-import json
-import pandas as pd
-from functools import lru_cache
-from datetime import datetime
+1
 
 app = Flask(__name__)
 
@@ -64,9 +61,32 @@ def gtin(barcode=None):
         product_info = get_product_by_barcode(barcode)
         
         if product_info:            
-            return render_template('product_view2.html', data=product_info,barcode=barcode)
+            return render_template('product_view3.html', data=product_info,barcode=barcode)
     return render_template('scanner3.html')
 
 
-
+@app.route('/create_product', methods=['POST'])
+def create_product():
+    product_data = {
+        'gtin': request.form['gtin'],
+        'name': request.form['name'],
+        'description': request.form['description'],
+        'image': request.form['image']
+    }
+    
+    # Save to database
+    product={
+       "gtin":product_data['gtin'],
+        "product_name":product_data['name'],
+        "descriptio":product_data['description'],
+        "image_url":product_data['image'],
+        "brand":1  # Default brand ID, you'll want to make this dynamic
+    }
+    
+    import json
+    file_path = f'/tmp/accepter/gtins/products/{product_data["gtin"]}.json'
+    with open(file_path, 'w', encoding='utf-8') as f:
+        json.dump(product_data, f, ensure_ascii=False, indent=4)
+    
+    return jsonify({'status': 'success', 'message': 'Product created successfully'})
 app.run(debug=True,port="64533",host="0.0.0.0")

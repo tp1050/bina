@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Data</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px; text-align: left; border: 1px solid #ddd; }
+        th { background-color: #4CAF50; color: white; }
+        img { max-width: 200px; height: auto; margin: 5px; }
+        .image-gallery { display: flex; flex-wrap: wrap; gap: 10px; }
+        .inventory-form { margin: 20px; padding: 20px; border: 1px solid #ddd; }
+        .product-form { margin: 20px; padding: 20px; border: 1px solid #ddd; background-color: #f9f9f9; }
+        .form-group { margin-bottom: 15px; }
+        .add-button { cursor: pointer; background: #4CAF50; color: white; border: none; padding: 5px 10px; margin-left: 10px; }
+        textarea { width: 100%; min-height: 100px; }
+    </style>
+</head>
+<body>
+    <div class="product-form">
+        <h2>Create Product</h2>
+        <form action="/create_product" method="POST" id="productForm">
+            <div class="form-group">
+                <label for="gtin">GTIN:</label>
+                <input type="text" id="gtin" name="gtin" value="{{ barcode }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+                <button type="button" class="add-button" onclick="addFromTable('name')">+</button>
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description"></textarea>
+                <button type="button" class="add-button" onclick="addFromTable('description')">+</button>
+            </div>
+            <div class="form-group">
+                <label for="image">Image URL:</label>
+                <input type="text" id="image" name="image">
+                <button type="button" class="add-button" onclick="addFromTable('image')">+</button>
+            </div>
+            <input type="submit" value="Create Product" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer;">
+        </form>
+    </div>
+
+    <div class="inventory-form">
+        <form action="/add_to_inventory" method="POST">
+            <input type="hidden" name="barcode" value="{{ barcode }}">
+            <label for="inventory">Select Inventory:</label>
+            <select name="inventory" id="inventory" required>
+                <option value="Kelardasht">Kelardasht</option>
+                <option value="darakeh">Darakeh</option>
+                <option value="mohamad">Mohamad</option>
+                <option value="koli">Koli</option>
+            </select>
+            <input type="submit" value="Add to Inventory">
+        </form>
+    </div>
+
+    <div class="container">
+        {% if data %}
+            {% for item in data %}
+                {% if item %}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for key, value in item.items() %}
+                                <tr>
+                                    <td>{{ key }}</td>
+                                    <td>
+                                        {% if value is string and (value.endswith('.jpg') or value.endswith('.png') or value.endswith('.gif') or value.startswith('http') and ('image' in value or 'img' in value)) %}
+                                            <img src="{{ value }}" alt="{{ key }}">
+                                        {% elif value is iterable and value is not string %}
+                                            <div class="image-gallery">
+                                                {% for img in value %}
+                                                    {% if img is string and (img.endswith('.jpg') or img.endswith('.png') or img.endswith('.gif') or img.startswith('http') and ('image' in img or 'img' in img)) %}
+                                                        <img src="{{ img }}" alt="{{ key }}">
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            {{ value }}
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <p>No data available</p>
+        {% endif %}
+    </div>
+
+    <script>
+        function addFromTable(field) {
+            const tables = document.querySelectorAll('table');
+            tables.forEach(table => {
+                const rows = table.getElementsByTagName('tr');
+                for (let row of rows) {
+                    const cells = row.getElementsByTagName('td');
+                    if (cells.length === 2) {
+                        const key = cells[0].textContent.toLowerCase();
+                        const value = cells[1].textContent;
+                        
+                        if (key.includes(field.toLowerCase())) {
+                            const inputField = document.getElementById(field);
+                            if (inputField.tagName === 'TEXTAREA') {
+                                inputField.value += (inputField.value ? '\n' : '') + value;
+                            } else {
+                                inputField.value = value;
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        document.getElementById('productForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const response = await fetch('/create_product', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+            alert(result.message);
+        };
+    </script>
+</body>
+</html>
